@@ -1,10 +1,10 @@
 import tkinter as tk
+from tkinter import filedialog
 import numpy as np
 import imageio
-from tkinter import filedialog
 from PIL import ImageTk, Image
-from wildfire.forest import Forest
 from pathlib import Path
+from wildfire.forest import Forest
 
 
 class Application(tk.Frame):
@@ -125,11 +125,11 @@ class Application(tk.Frame):
 
     def input_img_btn_click(self):
         self.input_img_entry.delete(0, tk.END)
-        self.input_img_entry.insert(tk.END, filedialog.askopenfilename())
+        self.input_img_entry.insert(tk.END, tk.filedialog.askopenfilename())
 
     def output_dir_btn_click(self):
         self.output_dir_entry.delete(0, tk.END)
-        self.output_dir_entry.insert(tk.END, filedialog.askdirectory())
+        self.output_dir_entry.insert(tk.END, tk.filedialog.askdirectory())
 
     def create_random_state(self):
         random_state = np.random.choice([0, 1], size=self.terrain_size,
