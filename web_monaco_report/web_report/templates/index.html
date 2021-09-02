@@ -1,0 +1,22 @@
+{% extends 'base.html' -%}
+
+{% block title -%}
+Monaco 2018 racing
+{%- endblock -%}
+
+{% block header -%}
+<h2>Menu:</h2>
+{%- endblock %}
+
+{% block body %}
+<ul class="main_menu">
+    <li class="main_menu_item">
+        <a href="{{url_for('routes.report')}}">Racing statistics</a>
+        (<a href="{{url_for('routes.report', order='desc')}}">reversed</a>)
+    </li>
+    <li class="main_menu_item">
+        <a href="{{url_for('routes.drivers')}}">Drivers</a>
+        (<a href="{{url_for('routes.drivers', order='desc')}}">reversed</a>)
+    </li>
+</ul>
+{%- endblock %}

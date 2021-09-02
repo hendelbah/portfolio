@@ -1,0 +1,17 @@
+{% extends 'base.html' -%}
+
+{% block title -%}
+Not found
+{%- endblock %}
+
+{% block header -%}
+<h2>Oops, there is no driver with code {{ code }}</h2>
+{%- endblock %}
+
+{% block tail %}
+<ul class="menu">
+    <li class="menu_item">
+        <a href="{{ url_for('routes.drivers', order=order) }}">Back to drivers</a>
+    </li>
+</ul>
+{%- endblock %}

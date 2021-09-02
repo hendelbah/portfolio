@@ -1,0 +1,29 @@
+.main_menu, .menu {
+    list-style: none;
+    margin-block: 0px;
+    padding-inline-start: 0px;
+}
+
+.main_menu {
+    width: max-content;
+    padding-inline-start: 10px;
+}
+
+.menu {
+    display: flex;
+    margin-block-start: 10px;
+}
+
+.main_menu_item, .menu_item {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 12px;
+}
+
+.main_menu_item {
+    background: #E2FAC4;
+}
+
+.menu_item {
+    background: #eee;
+}

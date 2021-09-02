@@ -1,0 +1,28 @@
+body {
+    margin: 0px;
+}
+
+a {
+    color: blue;
+}
+
+#main_header {
+    padding: 20px;
+    padding-left: 40px;
+    height: 37px;
+    background: #FEF1D4;
+}
+
+#main_header h1 {
+    margin: 0px;
+    color: #735002;
+}
+
+#content {
+    padding: 8px;
+}
+
+#header h2 {
+    padding: 18px;
+    margin: 0px;
+}

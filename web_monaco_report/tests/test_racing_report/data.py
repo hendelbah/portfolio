@@ -1,0 +1,84 @@
+ABBREVIATIONS = """DRR_Daniel Ricciardo_RED BULL RACING TAG HEUER
+SVF_Sebastian Vettel_FERRARI
+LHM_Lewis Hamilton_MERCEDES
+KRF_Kimi Räikkönen_FERRARI
+VBM_Valtteri Bottas_MERCEDES
+EOF_Esteban Ocon_FORCE INDIA MERCEDES
+FAM_Fernando Alonso_MCLAREN RENAULT
+CSR_Carlos Sainz_RENAULT
+SPF_Sergio Perez_FORCE INDIA MERCEDES
+PGS_Pierre Gasly_SCUDERIA TORO ROSSO HONDA
+NHR_Nico Hulkenberg_RENAULT
+SVM_Stoffel Vandoorne_MCLAREN RENAULT
+SSW_Sergey Sirotkin_WILLIAMS MERCEDES
+CLS_Charles Leclerc_SAUBER FERRARI
+RGH_Romain Grosjean_HAAS FERRARI
+BHS_Brendon Hartley_SCUDERIA TORO ROSSO HONDA
+MES_Marcus Ericsson_SAUBER FERRARI
+LSW_Lance Stroll_WILLIAMS MERCEDES
+KMH_Kevin Magnussen_HAAS FERRARI"""
+
+START = """SVF2018-05-24_12:02:58.917
+NHR2018-05-24_12:02:49.914
+FAM2018-05-24_12:13:04.512
+KRF2018-05-24_12:03:01.250
+SVM2018-05-24_12:18:37.735
+MES2018-05-24_12:04:45.513
+LSW2018-05-24_12:06:13.511
+BHS2018-05-24_12:14:51.985
+EOF2018-05-24_12:17:58.810
+RGH2018-05-24_12:05:14.511
+SSW2018-05-24_12:16:11.648
+KMH2018-05-24_12:02:51.003
+PGS2018-05-24_12:07:23.645
+CSR2018-05-24_12:03:15.145
+SPF2018-05-24_12:12:01.035
+DRR2018-05-24_12:14:12.054
+LHM2018-05-24_12:18:20.125
+CLS2018-05-24_12:09:41.921
+VBM2018-05-24_12:00:00.000"""
+
+END = """MES2018-05-24_1:05:58.778
+RGH2018-05-24_1:06:27.441
+SPF2018-05-24_1:13:13.883
+LSW2018-05-24_1:07:26.834
+DRR2018-05-24_1:11:24.067
+NHR2018-05-24_1:04:02.979
+CSR2018-05-24_1:04:28.095
+KMH2018-05-24_1:04:04.396
+BHS2018-05-24_1:16:05.164
+SVM2018-05-24_1:19:50.198
+KRF2018-05-24_1:04:13.889
+VBM2018-05-24_1:01:12.434
+SVF2018-05-24_1:04:03.332
+EOF2018-05-24_1:12:11.838
+PGS2018-05-24_1:08:36.586
+SSW2018-05-24_1:11:24.354
+FAM2018-05-24_1:14:17.169
+CLS2018-05-24_1:10:54.750
+LHM2018-05-24_1:11:32.585"""
+HEADER = " № |     Full Name     |            Car            |  Lap Time  \n"
+RESULT = """  1|  Lewis Hamilton   |         MERCEDES          | 0:53:12.460
+  2|   Esteban Ocon    |   FORCE INDIA MERCEDES    | 0:54:13.028
+  3|  Sergey Sirotkin  |     WILLIAMS MERCEDES     | 0:55:12.706
+  4| Daniel Ricciardo  | RED BULL RACING TAG HEUER | 0:57:12.013
+  5| Sebastian Vettel  |          FERRARI          | 1:01:04.415
+  6|  Valtteri Bottas  |         MERCEDES          | 1:01:12.434
+  7| Stoffel Vandoorne |      MCLAREN RENAULT      | 1:01:12.463
+  8|  Kimi Räikkönen   |          FERRARI          | 1:01:12.639
+  9|  Fernando Alonso  |      MCLAREN RENAULT      | 1:01:12.657
+ 10|  Charles Leclerc  |      SAUBER FERRARI       | 1:01:12.829
+ 11|   Sergio Perez    |   FORCE INDIA MERCEDES    | 1:01:12.848
+ 12|  Romain Grosjean  |       HAAS FERRARI        | 1:01:12.930
+ 13|   Pierre Gasly    | SCUDERIA TORO ROSSO HONDA | 1:01:12.941
+ 14|   Carlos Sainz    |          RENAULT          | 1:01:12.950
+ 15|  Nico Hulkenberg  |          RENAULT          | 1:01:13.065
+________________________________________________________________
+ 16|  Brendon Hartley  | SCUDERIA TORO ROSSO HONDA | 1:01:13.179
+ 17|  Marcus Ericsson  |      SAUBER FERRARI       | 1:01:13.265
+ 18|   Lance Stroll    |     WILLIAMS MERCEDES     | 1:01:13.323
+ 19|  Kevin Magnussen  |       HAAS FERRARI        | 1:01:13.393"""
+LEWIS = """1. Lewis Hamilton - MERCEDES
+Best lap time: 0:53:12.460
+Lap start : 2018-05-24 00:18:20.125
+Lap end   : 2018-05-24 01:11:32.585"""

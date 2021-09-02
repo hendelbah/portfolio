@@ -1,0 +1,35 @@
+{% extends 'table_tpl.html' -%}
+
+{% block title -%}
+Racing statistics
+{%- endblock %}
+
+{% block table %}
+<table>
+    <tr>
+        <th>№</th>
+        <th>Driver</th>
+        <th>Car</th>
+        <th>Best lap time</th>
+    </tr>
+    {% for driver in drivers -%}
+    {% if driver.index > 15 -%}
+    {% set r_class = "r_worst" -%}
+    {% else -%}
+    {% set r_class = "r_best" -%}
+    {% endif -%}
+    <tr class="{{ r_class }}">
+        <td class="col_index">{{ driver.index }}.</td>
+        <td>{{ driver.full_name }}</td>
+        <td>{{ driver.car }}</td>
+        <td class="col_time">{{ driver.lap_time }}</td>
+    </tr>
+    {%- endfor %}
+</table>
+{%- endblock %}
+
+
+{% block menu_item2 -%}
+<a href="{{ url_for('routes.drivers', order=order) }}">Show drivers list</a>
+{%- endblock %}
+

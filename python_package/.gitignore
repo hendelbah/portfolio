@@ -1,0 +1,9 @@
+/.idea
+/venv
+**/__py*
+**/.coverage
+**/.pytest*
+/htmlcov
+*.pyc
+dist/
+**/*.egg-info*

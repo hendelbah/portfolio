@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/base.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/tables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/menus.css') }}">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div id="main_header">
+    <h1>Report of Monaco 2018 racing</h1>
+</div>
+<div id="content">
+    <div id="header">
+        {% block header -%}
+        {% endblock %}
+    </div>
+    <div id="body">
+        {%- block body -%}
+        {% endblock %}
+    </div>
+    <div id="tail">
+        {%- block tail -%}
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>
