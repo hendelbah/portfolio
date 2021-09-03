@@ -62,7 +62,7 @@ class Application(tk.Frame):
         self.scale_entry.grid(row=3, column=1, columnspan=2, padx=3, pady=3)
 
         self.height_label = tk.Label(self)
-        self.height_label["text"] = 'Gif height '
+        self.height_label["text"] = 'Grid height '
         self.height_label.grid(row=4, column=0, sticky='W')
 
         self.height_entry = tk.Entry(self)
@@ -70,7 +70,7 @@ class Application(tk.Frame):
         self.height_entry.grid(row=4, column=1, columnspan=2, padx=3, pady=3)
 
         self.width_label = tk.Label(self)
-        self.width_label["text"] = 'Gif width '
+        self.width_label["text"] = 'Grid width '
         self.width_label.grid(row=5, column=0, sticky='W')
 
         self.width_entry = tk.Entry(self)
@@ -86,7 +86,7 @@ class Application(tk.Frame):
         self.wind_course_entry.grid(row=6, column=1, columnspan=2, padx=3, pady=3)
 
         self.wind_power_label = tk.Label(self)
-        self.wind_power_label["text"] = 'Wind power m/s'
+        self.wind_power_label["text"] = 'Wind power'
         self.wind_power_label.grid(row=7, column=0, sticky='W')
 
         self.wind_power_entry = tk.Entry(self)
@@ -105,7 +105,7 @@ class Application(tk.Frame):
         self.input_img_button.grid(row=8, column=3, sticky='W')
 
         self.output_dir_label = tk.Label(self)
-        self.output_dir_label["text"] = 'Output Directory'
+        self.output_dir_label["text"] = 'Output directory'
         self.output_dir_label.grid(row=9, column=0, sticky='W')
 
         self.output_dir_entry = tk.Entry(self)
@@ -116,7 +116,7 @@ class Application(tk.Frame):
         self.output_dir_button.grid(row=9, column=3, sticky='W')
 
         self.generate_button = tk.Button(self)
-        self.generate_button["text"] = "Select fire"
+        self.generate_button["text"] = "Select initial fire"
         self.generate_button["command"] = self.select_fire
         self.generate_button.grid(row=10, column=1, columnspan=1, padx=3, pady=3)
 
