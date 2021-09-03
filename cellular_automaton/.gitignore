@@ -1,9 +1,9 @@
 venv/
 htmlcov/
-#*.pyc
+*.pyc
 dist/
 *.egg-info/
-#__pycache__/
+__pycache__/
 instance/
 .pytest_cache/
 .idea/
