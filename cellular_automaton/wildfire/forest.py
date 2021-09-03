@@ -1,14 +1,6 @@
 import numpy as np
 import random
-
-direction_shifts = {0: [-1, 0],  # north
-                    1: [-1, 1],  # north-east
-                    2: [0, 1],  # east
-                    3: [1, 1],  # south-east
-                    4: [1, 0],  # south
-                    5: [1, -1],  # south-west
-                    6: [0, -1],  # west
-                    7: [-1, -1]}  # north-west
+import imageio
 
 DIRT_ID = 0
 TREE_ID = 1
@@ -26,28 +18,53 @@ pallet = {DIRT_ID: [190, 175, 135],
           FLAME3_ID: [225, 145, 0],
           FINAL_FLAME_ID: [195, 130, 0]}
 
+direction_shifts = {0: [-1, 0],  # north
+                    1: [-1, 1],  # north-east
+                    2: [0, 1],  # east
+                    3: [1, 1],  # south-east
+                    4: [1, 0],  # south
+                    5: [1, -1],  # south-west
+                    6: [0, -1],  # west
+                    7: [-1, -1]}  # north-west
+
 
 class Flame:
-    def __init__(self, y: int, x: int, stage: int = INITIAL_FLAME_ID, dirs: list[int] = None):
+    """
+    A class used to store i `burning` cell data for the algorithm
+
+    Attributes
+    ----------
+    x: int
+        x coordinate on the grid
+    y: int
+        x coordinate on the grid
+    sub_state: int
+        a substate of `burning` cell
+    dirs: list of int
+        list of possible directions to look for `tree` cell
+        to spread the fire
+    """
+
+    def __init__(self, y: int, x: int, sub_state: int = INITIAL_FLAME_ID, dirs: list[int] = None):
         if dirs is None:
             dirs = list(range(8))
         self.x = x
         self.y = y
-        self.stage = stage
+        self.sub_state = sub_state
         self.dirs = dirs
 
     def evolve(self, dirs=None):
-        if self.stage >= FINAL_FLAME_ID:
-            self.stage = DIRT_ID
+        if self.sub_state >= FINAL_FLAME_ID:
+            self.sub_state = DIRT_ID
             self.dirs = []
         else:
             if dirs is not None:
                 self.dirs = dirs
-            self.stage += 1
+            self.sub_state += 1
 
 
 class Forest:
-    def __init__(self, initial_state, scale=1):
+    def __init__(self, initial_state, scale):
         self.state = initial_state
         self.height = initial_state.shape[0]
         self.width = initial_state.shape[1]
@@ -72,6 +89,37 @@ class Forest:
         else:
             self.picture[condition_x - 1, condition_y - 1] = color
 
+    @classmethod
+    def random(cls, size: list[int, int], tree_probability: float, scale=1):
+        random_state = np.random.choice([0, 1], size=size, p=[1 - tree_probability, tree_probability])
+        return cls(random_state, scale)
+
+    @classmethod
+    def from_image(cls, image_path, scale=1):
+        threshold = 140  # a threshold for considering pixel as a "river"
+        pic = imageio.imread(image_path)
+        # 2 is not blue
+        # 1 is not green
+        # 0 is not red
+        not_red = pic[:, :, 0]
+        not_green = pic[:, :, 1]
+        not_blue = pic[:, :, 2]
+        # here happens black magic process of deciding which pixels
+        # represent forest and which don't
+        green = (not_red + not_blue - not_green) / 2
+        red = (not_blue + not_green - not_red) / 2
+        blue = (not_green + not_red - not_blue) / 2
+        # the greener and the bluer pixel is, the 'foresty' it is.
+        image_state = np.clip((green * 5 + red - blue), 0, 256)
+        for x in range(image_state.shape[0]):
+            for y in range(image_state.shape[1]):
+                if image_state[x, y] < threshold:
+                    image_state[x, y] = 1
+                else:
+                    image_state[x, y] = 0
+        imageio.imsave('usedcolormask.png', pic)
+        return cls(image_state, scale)
+
     def add_fire(self, flame: Flame or int = None, x: int = None):
         """
 
@@ -82,15 +130,12 @@ class Forest:
             flame = Flame(self.state.shape[1] // 2, self.state.shape[0] // 2)
         elif isinstance(flame, int):
             flame = Flame(flame, x)
-        if 1 < flame.stage < 7:
+        if 1 < flame.sub_state < 7:
             self._flames.append(flame)
-        self.state[flame.y, flame.x] = flame.stage
+        self.state[flame.y, flame.x] = flame.sub_state
         self._translate_cell_to_picture(flame.y, flame.x)
 
     def calculate_next_state(self, flame_powers, wind_course, wind_power):
-        def is_odd(n: int):
-            return n % 2
-
         def reverse_direction(dir_arg: int):
             if dir_arg < 4:
                 dir_arg += 4
@@ -102,13 +147,13 @@ class Forest:
         self._flames = []
         for flame in prev_flames:
             flame_next_dirs = []
-            power = flame_powers[flame.stage - 2]
+            power = flame_powers[flame.sub_state - 2]
             for direction in flame.dirs:
                 shift = direction_shifts[direction]
                 new_flame = Flame(flame.y + shift[0], flame.x + shift[1])
                 if 0 < new_flame.y < self.height - 1 and 0 < new_flame.x < self.width - 1:
                     if self.state[new_flame.y, new_flame.x] == TREE_ID:
-                        diagonal_multiplier = 1 - is_odd(direction) * 0.65
+                        diagonal_multiplier = 1 - (direction % 2) * 0.65
                         if wind_power > 0:
                             wind_angle = abs(wind_course - direction * 45)
                             if wind_angle > 180:

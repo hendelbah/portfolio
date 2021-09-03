@@ -12,7 +12,6 @@ class Application(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
-        self.threshold = 140
         self.spawn_forest_prob = 0.7
         self.flame_powers = [0, 30, 60, 30, 0]
         self.time = 100
@@ -23,7 +22,9 @@ class Application(tk.Frame):
         self.input_img_path = Path()
         self.output_dir = Path()
         self.generated_gif_count = 0
-        self.canvas = tk.Canvas()
+        self.forest = None
+        self.canvas = None
+        self.can_image = None
         self.pack(side='left')
         self.create_widgets()
 
@@ -131,35 +132,6 @@ class Application(tk.Frame):
         self.output_dir_entry.delete(0, tk.END)
         self.output_dir_entry.insert(tk.END, tk.filedialog.askdirectory())
 
-    def create_random_state(self):
-        random_state = np.random.choice([0, 1], size=self.terrain_size,
-                                        p=[1 - self.spawn_forest_prob, self.spawn_forest_prob])
-        return random_state
-
-    def create_state_from_image(self, image_path):
-        pic = imageio.imread(image_path)
-        # 2 is not blue
-        # 1 is not green
-        # 0 is not red
-        not_red = pic[:, :, 0]
-        not_green = pic[:, :, 1]
-        not_blue = pic[:, :, 2]
-        # here happens black magic process of deciding which pixels
-        # represent forest and which don't
-        green = (not_red + not_blue - not_green) / 2
-        red = (not_blue + not_green - not_red) / 2
-        blue = (not_green + not_red - not_blue) / 2
-        # the greener and the bluer pixel is, the 'foresty' it is.
-        image_state = np.clip((green * 5 + red - blue), 0, 256)
-        for x in range(image_state.shape[0]):
-            for y in range(image_state.shape[1]):
-                if image_state[x, y] < self.threshold:
-                    image_state[x, y] = 1
-                else:
-                    image_state[x, y] = 0
-        imageio.imsave('usedcolormask.png', pic)
-        return image_state
-
     def calculate_gif(self, forest):
         picture_array = np.zeros((self.time, (forest.height - 2) * forest.picture_scale,
                                   (forest.width - 2) * forest.picture_scale, 3), dtype=np.uint8)
@@ -168,22 +140,20 @@ class Application(tk.Frame):
             forest.calculate_next_state(self.flame_powers, self.wind_course, self.wind_power)
             print(str(round(frame / self.time * 100, 2)) + '% of frames processed')
             picture_array[frame] = forest.picture
-        print("GIF generation complete. Saving...")
         return picture_array
 
-    def generate_gif(self, event):
+    def simulate_wildfire(self, event):
         x = (event.x - 2) // self.forest.picture_scale
         y = (event.y - 2) // self.forest.picture_scale
         self.forest.add_fire(y, x)
         gif = self.calculate_gif(self.forest)
+        print("GIF generation complete. Saving...")
         imageio.mimsave(self.output_dir / f'wildfire{self.generated_gif_count}.gif', gif)
         self.generated_gif_count += 1
         print("GIF saved")
-        event.widget.delete('all')
-        self.canvas.configure(width=0)
+        event.widget.destroy()
         self.pack(side='left')
 
-    # noinspection PyAttributeOutsideInit
     def select_fire(self):
         entered_height = int(self.height_entry.get())
         entered_width = int(self.width_entry.get())
@@ -196,18 +166,19 @@ class Application(tk.Frame):
         self.wind_power = float(self.wind_power_entry.get())
         self.input_img_path = Path(self.input_img_entry.get())
         self.output_dir = Path(self.output_dir_entry.get())
-        initial_state = self.create_random_state()
+        image_proceeded = False
         if self.input_img_path.is_file():
             try:
-                initial_state = self.create_state_from_image(self.input_img_path)
+                self.forest = Forest.from_image(self.input_img_path, self.scale)
+                image_proceeded = True
             except Exception as e:
                 print(e)
         else:
             print('No valid image file selected. Using random values instead')
-        self.forest = Forest(initial_state, self.scale)
-        self.canvas.destroy()
+        if not image_proceeded:
+            self.forest = Forest.random(self.terrain_size, self.spawn_forest_prob, self.scale)
         self.can_image = ImageTk.PhotoImage(Image.fromarray(self.forest.picture, mode='RGB'))
         self.canvas = tk.Canvas(self.master, width=self.can_image.width(), height=self.can_image.height())
         self.canvas.create_image(0, 0, anchor=tk.NW, image=self.can_image)
         self.canvas.pack(side='left')
-        self.canvas.bind("<Button-1>", self.generate_gif)
+        self.canvas.bind("<Button-1>", self.simulate_wildfire)
