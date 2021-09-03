@@ -132,21 +132,21 @@ class Application(tk.Frame):
         self.output_dir_entry.delete(0, tk.END)
         self.output_dir_entry.insert(tk.END, tk.filedialog.askdirectory())
 
-    def calculate_gif(self, forest):
-        picture_array = np.zeros((self.time, (forest.height - 2) * forest.picture_scale,
-                                  (forest.width - 2) * forest.picture_scale, 3), dtype=np.uint8)
-        picture_array[0] = forest.picture
+    def calculate_gif(self):
+        picture_array = np.zeros((self.time, (self.forest.height - 2) * self.forest.picture_scale,
+                                  (self.forest.width - 2) * self.forest.picture_scale, 3), dtype=np.uint8)
+        picture_array[0] = self.forest.picture
         for frame in range(1, self.time):
-            forest.calculate_next_state(self.flame_powers, self.wind_course, self.wind_power)
+            self.forest.evolve_to_next_frame(self.flame_powers, self.wind_course, self.wind_power)
             print(str(round(frame / self.time * 100, 2)) + '% of frames processed')
-            picture_array[frame] = forest.picture
+            picture_array[frame] = self.forest.picture
         return picture_array
 
     def simulate_wildfire(self, event):
         x = (event.x - 2) // self.forest.picture_scale
         y = (event.y - 2) // self.forest.picture_scale
         self.forest.add_fire(y, x)
-        gif = self.calculate_gif(self.forest)
+        gif = self.calculate_gif()
         print("GIF generation complete. Saving...")
         imageio.mimsave(self.output_dir / f'wildfire{self.generated_gif_count}.gif', gif)
         self.generated_gif_count += 1

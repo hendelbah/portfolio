@@ -40,7 +40,7 @@ UI
 There is a TkInter UI, that consists of:
 
 * ``probability`` field:
-    the probability of ``tree`` generation on initial grid
+    the probability of ``tree`` spawning on initial grid
 * ``fire power values`` field:
     five integers (from 0 to 100) that represent chance (in percents)
     of fire spreading, corresponding to each individual substate of ``burning`` cell
