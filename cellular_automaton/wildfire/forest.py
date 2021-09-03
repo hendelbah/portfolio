@@ -172,6 +172,14 @@ class Forest:
         self.grid[flame.y, flame.x] = flame.sub_state
         self._translate_cell_to_picture(flame.y, flame.x)
 
+    @staticmethod
+    def _reverse_direction(dir_arg: int):
+        if dir_arg < 4:
+            dir_arg += 4
+        else:
+            dir_arg -= 4
+        return dir_arg
+
     def evolve_to_next_frame(self, flame_powers, wind_course, wind_power):
         """
         Proceed all `burning` cells to change frame\n
@@ -179,14 +187,6 @@ class Forest:
         :param wind_course: the direction of the wind
         :param wind_power: the speed of the wind
         """
-
-        def reverse_direction(dir_arg: int):
-            if dir_arg < 4:
-                dir_arg += 4
-            else:
-                dir_arg -= 4
-            return dir_arg
-
         prev_flames = self._flames
         self._flames = []
         for flame in prev_flames:
@@ -209,7 +209,7 @@ class Forest:
                         else:
                             wind_multiplier = 1
                         if random.randint(1, 100) <= power * diagonal_multiplier * wind_multiplier:
-                            new_flame.dirs.pop(reverse_direction(direction))
+                            new_flame.dirs.pop(self._reverse_direction(direction))
                             self.add_fire(new_flame)
                         else:
                             flame_next_dirs.append(direction)
