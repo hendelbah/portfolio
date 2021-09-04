@@ -2,7 +2,7 @@ Fractals
 ========
 This is an application for visualizing fractal sets,namely Mandelbrot
 set and Julia set. It is written in Delphi using Embarcadero RAD studio.
-Main code is inside ``Unit1.pas``.
+Main code is stored inside ``Unit1.pas``.
 
 **I guess you don't have RAD studio to compile this code. So I hope you won't
 mind running** ``Fractals.exe`` **I've already compiled, because actually it's fun.

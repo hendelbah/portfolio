@@ -12,6 +12,8 @@ Listed from new to old:
 
 Web Monaco report
 -----------------
+Web application for showing Monaco 2018 Racing statistics.
+
 This is a project for FoxmindEd Python courses. It is well documented
 and covered with tests
 
@@ -27,6 +29,8 @@ It uses:
 
 Unique characters
 -----------------
+Application that has tools for finding unique characters in given string.
+
 This is a project for FoxmindEd Python courses. It is well documented
 and covered with tests(pytest)
 
@@ -44,8 +48,11 @@ Telebot
     **Both this and the next projects I had made before I decided to become a
     professional programmer, also they are not covered with tests.**
 
-The telegram bot I made for managing certain common situations in chat of
+The telegram bot for managing certain common situations in chat of
 employees of chemical factory I used to work at.
+
+I had made it just out of interest, but unfortunately it didn't find any real
+life application.
 
 It uses:
 
@@ -55,9 +62,11 @@ It uses:
 
 Cellular automaton
 ------------------
+Application that simulates wildfire using cellular automata model. As the result
+is creates GIF file that shows wildfire dynamics.
+
 This was a project for my lab work in university(actually we had some
-programing subjects when studied chemistry). The task was to simulate
-wildfires using cellular automata model.
+programing subjects when studied chemistry).
 
 It is performed in OOP style and has GUI.
 
@@ -68,10 +77,13 @@ It uses:
 - **pillow**
 
 Fractals
-------------------
+--------
+Application with GUI that visualizes Mandelbrot and Julia sets.
+
 I did this project for fun 2 years ago when i didn't know python, using
-Delphi that I had been taught in school.
+Delphi I had been taught in school.
 
-It was made with Embarcadero RAD studio IDE
+It was made with Embarcadero RAD studio IDE, and uses external GifImage
+library for saving GIF
 
-I think the application is very fun, hope you'll **try** it.
+I think this application is very fun, hope you'll **try** it.
