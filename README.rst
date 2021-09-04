@@ -11,7 +11,7 @@ Listed from new to old:
 
 Web Monaco report
 -----------------
-This project is made for FoxmindEd Python courses. It is well documented
+This is a project for FoxmindEd Python courses. It is well documented
 and covered with tests
 
 There is racing_report subpackage for building the report from particular
@@ -26,7 +26,7 @@ It uses:
 
 Unique characters
 -----------------
-This project is made for FoxmindEd Python courses. It is well documented
+This is a project for FoxmindEd Python courses. It is well documented
 and covered with tests(pytest)
 
 It is performed as python package, has importable utilities and also CLI
@@ -43,7 +43,7 @@ Telebot
     **Both this and the next projects I had made before I decided to become a
     professional programmer, also they are not covered with tests.**
 
-The telegram bot for managing certain common situations in chat of
+The telegram bot I made for managing certain common situations in chat of
 employees of chemical factory I used to work at.
 
 It uses:
