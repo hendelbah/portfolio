@@ -84,6 +84,6 @@ I did this project for fun 2 years ago when i didn't know python, using
 Delphi I had been taught in school.
 
 It was made with Embarcadero RAD studio IDE, and uses external GifImage
-library for saving GIF
+library for saving GIF (it's quite large)
 
 I think this application is very fun, hope you'll **try** it.
