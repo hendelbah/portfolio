@@ -4,15 +4,17 @@ This is an application for wildfire simulation based on cellular automata
 
 Features
 --------
-Application generates a GIF file representing fire spreading in the forest
+* Application generates a GIF file representing fire spreading in the forest
 
-You can specify some parameters of fire spread.
+* GUI
 
-Can set the wind, so fire will be more likely to spread in some direction
+* You can specify some parameters of fire spread simulation.
 
-Can choose a directory to save that gif
+* You can set the wind, so fire will be more likely to spread in some direction
 
-Also you can open a picture, like a real forest photo from satellite,
+* You can choose a directory to save that gif
+
+* Also you can open a picture, like a real forest photo from satellite,
 that will be a pattern for initial grid generation. More blueish pixels
 will turn into "river" cells which don't burn
 
@@ -35,9 +37,9 @@ last value it goes out and turns into dirt.
 Program is optimized in such a way that it process only burning cells each frame,
 searches around these cells for any ``tree`` and also excludes non-``tree`` from this search
 
-UI
---
-There is a TkInter UI, that consists of:
+GUI
+---
+There is a TkInter GUI, that consists of:
 
 * ``probability`` field:
     the probability of ``tree`` spawning on initial grid
