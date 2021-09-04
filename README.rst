@@ -40,8 +40,8 @@ It uses:
 Telebot
 -------
 .. important::
-    Both this and the next projects I had made before I decided to become a
-    professional programmer, also they are not covered with tests.
+    **Both this and the next projects I had made before I decided to become a
+    professional programmer, also they are not covered with tests.**
 
 The telegram bot for managing certain common situations in chat of
 employees of chemical factory I used to work at.
