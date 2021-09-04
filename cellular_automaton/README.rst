@@ -15,8 +15,8 @@ Features
 - You can choose a directory to save that gif
 
 - Also you can open a picture, like a real forest photo from satellite,
-that will be a pattern for initial grid generation. More blueish pixels
-will turn into "river" cells which don't burn
+  that will be a pattern for initial grid generation. More blueish pixels
+  will turn into "river" cells which don't burn
 
 Concept
 -------
