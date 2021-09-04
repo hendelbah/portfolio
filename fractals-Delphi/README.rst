@@ -2,10 +2,10 @@ Fractals
 ========
 This is an application for visualizing fractal sets,namely Mandelbrot
 set and Julia set. It is written in Delphi using Embarcadero RAD studio.
-Main code is inside `Unit1.pas`.
+Main code is inside ``Unit1.pas``.
 
 **I guess you don't have RAD studio to compile this code. So I hope you won't
-mind running `Fractals.exe` I've already compiled, because actually it's fun.
+mind running** ``Fractals.exe`` **I've already compiled, because actually it's fun.
 There is hints on hover for each GUI element for better navigation.**
 
 I won't explain here in detail what Mandelbrot and Julia sets are and what is
@@ -36,7 +36,7 @@ so you might need to set higher iterations number.
 
 - You can save current image in the app directory with ``Save image`` button
 
-The next thing is Julia set drawing:
+**The next thing is Julia set drawing:**
 
 - Better you have set the droplist value (second GUI element from top row) to ``2``
 
@@ -57,7 +57,7 @@ entered cartesian into polar coordinates or vice versa.
 - The resulting Julia set is something similar to surroundings of a point that you
 picked on the Mandelbrot set, so i recommend you to pick points near the black regions.
 
-The last and the most cool thing is GIF generation, I might call it "kaleidoscope")):
+**The last and the most cool thing is GIF generation, I might call it "kaleidoscope")):**
 
 - It works properly only if you have set the droplist value to ``2``
 
