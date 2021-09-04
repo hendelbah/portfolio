@@ -29,7 +29,7 @@ Unique characters
 This is a project for FoxmindEd Python courses. It is well documented
 and covered with tests(pytest)
 
-It is performed as python package, has importable utilities and also CLI
+It is performed as a python package and has importable utilities and also CLI
 
 It uses:
 
