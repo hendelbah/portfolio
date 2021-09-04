@@ -8,6 +8,7 @@ Listed from new to old:
 - Unique characters
 - Telebot: telegram chat bot
 - Cellular automaton: wildfire simulation
+- Fractals on Delphi
 
 Web Monaco report
 -----------------
@@ -65,3 +66,12 @@ It uses:
 - **TKInter**
 - **OOP**
 - **pillow**
+
+Fractals
+------------------
+I did this project for fun 2 years ago when i didn't know python, using
+Delphi that I had been taught in school.
+
+It was made with Embarcadero RAD studio IDE
+
+I think the application is very fun.
