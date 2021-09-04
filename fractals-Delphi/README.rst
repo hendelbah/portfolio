@@ -19,7 +19,7 @@ How to use
 The application draws the Mandelbrot set when you simply press the ``draw`` button.
 If you used some feature below an nothing happened press this button again.
 
-**Basic :**
+**Basic use:**
 
 - You can specify number of max iterations that algorithm performs in the top left
   corner field. Bigger number makes the fractal more detailed but computation can
@@ -31,6 +31,8 @@ If you used some feature below an nothing happened press this button again.
 
 - You can zoom in and out with mouse scroll. If you zoom in, the detalization drops,
   so you might need to set higher iterations number.
+
+- ``reset`` button resets zoom and adjusts window size if you've changed it
 
 - When zoomed, you can move the image with ``ctrl+drag``.
 
@@ -59,7 +61,8 @@ If you used some feature below an nothing happened press this button again.
 
 **The last and the most cool thing - GIF generation, I might call it "kaleidoscope")):**
 
-- It works properly only if you have set the droplist value to ``2``
+- It works properly only if you have set the droplist value to ``2``, also make sure
+  zoom is reset and iterations number isn't to high (values 100-200 is the best)
 
 - **Just click on the rainbow rectangle and behold**
 

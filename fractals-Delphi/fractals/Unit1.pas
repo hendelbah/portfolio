@@ -60,7 +60,6 @@ type
     procedure Image2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Timer3Timer(Sender: TObject);
-    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
 
@@ -184,6 +183,7 @@ i,rslt,f:integer;
 Ext:TGIFGraphicControlExtension;
 LoopExt:TGIFAppExtNSLoop;
 ex:bool;
+image:  TGIFImage;
 begin
 giff:=TGifImage.Create;
 f:=-1;
@@ -202,13 +202,16 @@ giff.DitherMode:=dmnearest;
 giff.Animate:=true;
 giff.AnimationSpeed:=form1.Timer1.Interval;
 //
-rslt:=giff.Add(gif[0]);
-    LoopExt := TGIFAppExtNSLoop.Create(giff.Images[Rslt]);
-    LoopExt.Loops := 0;
-    giff.Images[Rslt].Extensions.Add(LoopExt);
+image:= TGIFImage.Create();
+image.Assign(gif[0]);
+rslt:=giff.Add(image);
+LoopExt := TGIFAppExtNSLoop.Create(giff.Images[Rslt]);
+LoopExt.Loops := 0;
+giff.Images[Rslt].Extensions.Add(LoopExt);
 for I := 1 to length(gif) - 1 do
 begin
-  rslt:=giff.Add(gif[i]);
+  image.Assign(gif[i]);
+  rslt:=giff.Add(image);
   Ext := TGIFGraphicControlExtension.Create(giff.Images[Rslt]);
   Ext.Delay := form1.Timer1.Interval div 10;
   giff.Images[Rslt].Extensions.Add(Ext);
@@ -674,8 +677,6 @@ end;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
-var
-ex:bool;
 begin
 m:=false;  mk:=false;  res:=true;  zoom:=true;  thread:=false;  clos:=false;  sav:=false;  savim:=false;
 BitmapBufer:=tbitmap.Create;
@@ -779,24 +780,6 @@ case button of
 end;
 
 end;
-
-procedure TForm1.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
-  Y: Integer);
-var cl1:tpoint;
-begin
-if m then
-begin
-  getcursorpos(cl1);
-  cl1.X:=cl1.X-form1.ClientOrigin.X;
-  cl1.Y:=cl1.Y-form1.ClientOrigin.Y;
-  form1.Image1.Left:=cl1.X-cl.X;
-  form1.Image1.Top:=cl1.Y-cl.Y;
-end;
-if debug and not thread then
-form1.Caption:=floattostr((x-cx)/w*xscale/scale)+' '+floattostr((y-cy)/h*yscale/scale) ;
-
-end;
-
 
 procedure TForm1.FormMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
