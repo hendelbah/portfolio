@@ -169,16 +169,6 @@ unit GIFImage;
 //
 ////////////////////////////////////////////////////////////////////////////////
 // To do (in rough order of priority):
-// { TODO -oanme -cFeature : TImage hook for destroy notification. }
-// { TODO -oanme -cFeature : TBitmap pool to limit resource consumption on Win95/98. }
-// { TODO -oanme -cImprovement : Make BitsPerPixel property writable. }
-// { TODO -oanme -cFeature : Visual GIF component. }
-// { TODO -oanme -cImprovement : Easier method to determine DrawPainter status. }
-// { TODO -oanme -cFeature : Import to 256+ color GIF. }
-// { TODO -oanme -cFeature : Make some of TGIFImage's properties persistent (DrawOptions etc). }
-// { TODO -oanme -cFeature : Add TGIFImage.Persistent property. Should save published properties in application extension when this options is set. }
-// { TODO -oanme -cBugFix : Solution for background buffering in scrollbox. }
-//
 //////////////////////////////////////////////////////////////////////////////////
 {$ifdef BCB}
 {$ObjExportAll On}
@@ -1939,7 +1929,6 @@ end;
 **  Read a string list from a stream as multiple blocks
 **  of max 255 characters in each.
 *)
-{ TODO -oanme -cImprovement : Replace ReadStrings with TGIFReader. }
 procedure ReadStrings(Stream: TStream; Text: TStrings);
 var
   size			: BYTE;
@@ -4941,7 +4930,6 @@ begin
         exit;
       end;
 
-      { TODO -oanme -cImprovement : Gray scale conversion should be done prior to dithering/mapping. Otherwise corrected values will be converted multiple times. }
 
       // Create a color mapper based on current options
       case (ColorReduction) of
@@ -5273,7 +5261,7 @@ begin
       peRed := Red;
       peGreen := Green;
       peBlue := Blue;
-      peFlags := PC_NOCOLLAPSE; { TODO -oanme -cImprovement : Verify that PC_NOCOLLAPSE is the correct value to use. }
+      peFlags := PC_NOCOLLAPSE;
     end;
   Result := CreatePalette(PLogPalette(@Pal)^);
 end;
@@ -6611,7 +6599,6 @@ begin
     if (FBufferCount <= 0) then
     begin
       FStream.Read(size, 1);
-      { TODO -oanme -cImprovement : Should be handled as a warning instead of an error. }
       if (size >= 255) then
         Error('GIF block too large');
       FBufferCount := size;
@@ -9901,7 +9888,6 @@ begin
   // Some old Adobe export filters mistakenly uses a value of 10
   if (Size = 10) then
   begin
-    { TODO -oanme -cImprovement : replace with seek or read and check contents = 'Adobe' }
     if (Stream.Read(eIdent, 10) <> 10) then
       exit;
     Result := TGIFUnknownAppExtension;
@@ -9992,7 +9978,6 @@ begin
   // Ignore extra data
   Stream.Seek(i, soFromCurrent);
 
-  // ***FIXME***
   // If self class is TGIFApplicationExtension, this will cause an "abstract
   // error".
   // TGIFApplicationExtension.LoadData should read and ignore rest of block.
@@ -10490,7 +10475,6 @@ var
         FrameHeight := FImage.Images[ActiveImage].Height;
         ImageWidth := FImage.Width;
         ImageHeight := FImage.Height;
-        // ***FIXME*** I don't think this does any difference
         BackupBuffer.Canvas.Brush.Color := FImage.DrawBackgroundColor;
 
         Tile.Left := FRect.Left + FImage.Images[ActiveImage].Left;
@@ -11102,7 +11086,7 @@ begin
       // Check for invalid color index
       if (ord(Pixel^) >= FCount) then
       begin
-        Pixel^ := #0; // ***FIXME*** Isn't this an error condition?
+        Pixel^ := #0;
         Image.Warning(gsWarning, sInvalidColor);
       end;
 
@@ -11873,7 +11857,6 @@ begin
       begin
         if (ColorReduction = rmPalette) then
           Error(sInvalidReduction);
-        { TODO -oanme -cFeature : Implement ooReduceColors option. }
         // Not implemented!
       end;
     finally
@@ -12076,7 +12059,6 @@ begin
     Image := TGIFSubImage.Create(self);
     try
       Image.Assign(Source);
-      // ***FIXME*** Documentation should explain the inconsistency here:
       // TGIFimage does not take ownership of Source after TGIFImage.Add() and
       // therefore does not delete Source.
     except
@@ -12243,7 +12225,6 @@ begin
     inherited AssignTo(Dest);
 end;
 
-{ TODO 1 -oanme -cImprovement : Better handling of TGIFImage.Assign(Empty TBitmap). }
 procedure TGIFImage.Assign(Source: TPersistent);
 var
   i			: integer;
