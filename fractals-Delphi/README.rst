@@ -69,5 +69,5 @@ If you used some feature below an nothing happened press this button again.
 - If frames begin to change smoothly computation is finished. In that case you can save
   this thing as GIF with ``Save GIF`` button
 
-I hope you have enjoyed!
-""""""""""""""""""""""""
+I hope you'll enjoy!
+""""""""""""""""""""
