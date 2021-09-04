@@ -4,10 +4,10 @@ There is some projects I have done and want to share
 
 Listed from new to old:
 
-* Web Monaco report
-* Unique characters
-* Telebot: telegram chat bot
-* Cellular automaton: wildfire simulation
+- Web Monaco report
+- Unique characters
+- Telebot: telegram chat bot
+- Cellular automaton: wildfire simulation
 
 Web Monaco report
 -----------------
@@ -19,10 +19,10 @@ files, performed in OOP style
 
 It uses:
 
-* **Flask, Jinja**
-* **HTML, CSS**
-* **OOP**
-* **pytest**
+- **Flask, Jinja**
+- **HTML, CSS**
+- **OOP**
+- **pytest**
 
 Unique characters
 -----------------
@@ -33,9 +33,9 @@ It is performed as a python package and has importable utilities and also CLI
 
 It uses:
 
-* **collections**
-* **argparse**
-* **pytest**
+- **collections**
+- **argparse**
+- **pytest**
 
 Telebot
 -------
@@ -48,9 +48,9 @@ employees of chemical factory I used to work at.
 
 It uses:
 
-* **pyTelegramBotAPI**
-* **SQL: Sqlite3**
-* **OOP**
+- **pyTelegramBotAPI**
+- **SQL: Sqlite3**
+- **OOP**
 
 Cellular automaton
 ------------------
@@ -62,6 +62,6 @@ It is performed in OOP style and has GUI.
 
 It uses:
 
-* **TKInter**
-* **OOP**
-* **pillow**
+- **TKInter**
+- **OOP**
+- **pillow**

@@ -8,11 +8,11 @@ There is submodule `web_report/racing_report` that builds report into instance o
 
 The application has a few routes:
 
-* http://localhost:5000/ - index page
-* http://localhost:5000/report - shows general racing statistic
-* http://localhost:5000/report/drivers/  - shows list of drivers name and code. Code has a link on info about driver
-* http://localhost:5000/report/drivers/?driver_id=SVF shows info about a driver
+- http://localhost:5000/ - index page
+- http://localhost:5000/report - shows general racing statistic
+- http://localhost:5000/report/drivers/  - shows list of drivers name and code. Code has a link on info about driver
+- http://localhost:5000/report/drivers/?driver_id=SVF shows info about a driver
 
 Also, each route could get order parameter
 
-* http://localhost:5000/report/drivers/?order=desc
+- http://localhost:5000/report/drivers/?order=desc
