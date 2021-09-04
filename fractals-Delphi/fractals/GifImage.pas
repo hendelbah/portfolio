@@ -180,104 +180,6 @@ interface
 //		Conditional Compiler Symbols
 //
 ////////////////////////////////////////////////////////////////////////////////
-(*
-  DEBUG				Must be defined if any of the DEBUG_xxx
-  				symbols are defined.
-                                If the symbol is defined the source will not be
-                                optimized and overflow- and range checks will be
-                                enabled.
-
-  DEBUG_HASHPERFORMANCE		Calculates hash table performance data.
-  DEBUG_HASHFILLFACTOR		Calculates fill factor of hash table -
-  				Interferes with DEBUG_HASHPERFORMANCE.
-  DEBUG_COMPRESSPERFORMANCE	Calculates LZW compressor performance data.
-  DEBUG_DECOMPRESSPERFORMANCE	Calculates LZW decompressor performance data.
-  DEBUG_DITHERPERFORMANCE	Calculates color reduction performance data.
-  DEBUG_DRAWPERFORMANCE		Calculates low level drawing performance data.
-  				The performance data for DEBUG_DRAWPERFORMANCE
-                                will be displayed when you press the Ctrl key.
-  DEBUG_RENDERPERFORMANCE	Calculates performance data for the GIF to
-  				bitmap converter.
-  				The performance data for DEBUG_DRAWPERFORMANCE
-                                will be displayed when you press the Ctrl key.
-
-  GIF_NOSAFETY			Define this symbol to disable overflow- and
-				range checks.
-                                Ignored if the DEBUG symbol is defined.
-
-  STRICT_MOZILLA		Define to mimic Mozilla as closely as possible.
-  				If not defined, a slightly more "optimal"
-                                implementation is used (IMHO).
-
-  FAST_AS_HELL			Define this symbol to use strictly GIF compliant
-  				(but too fast) animation timing.
-                                Since our paint routines are much faster and
-                                more precise timed than Mozilla's, the standard
-                                GIF and Mozilla values causes animations to loop
-                                faster than they would in Mozilla.
-                                If the symbol is _not_ defined, an alternative
-                                set of tweaked timing values will be used.
-                                The tweaked values are not optimal but are based
-                                on tests performed on my reference system:
-                                - Windows 95
-                                - 133 MHz Pentium
-                                - 64Mb RAM
-                                - Diamond Stealth64/V3000
-                                - 1600*1200 in 256 colors
-                                The alternate values can be modified if you are
-                                not satisfied with my defaults (they can be
-                                found a few pages down).
-
-  REGISTER_TGIFIMAGE            Define this symbol to register TGIFImage with
-  				the TPicture class and integrate with TImage.
-                                This is required to be able to display GIFs in
-                                the TImage component.
-                                The symbol is defined by default.
-                                Undefine if you use another GIF library to
-                                provide GIF support for TImage.
-
-  PIXELFORMAT_TOO_SLOW		When this symbol is defined, the internal
-  				PixelFormat routines are used in some places
-                                instead of TBitmap.PixelFormat.
-                                The current implementation (Delphi4, Builder 3)
-                                of TBitmap.PixelFormat can in some situation
-                                degrade performance.
-                                The symbol is defined by default.
-
-  CREATEDIBSECTION_SLOW		If this symbol is defined, TDIBWriter will
-  				use global memory as scanline storage, instead
-                                of a DIB section.
-                                Benchmarks have shown that a DIB section is
-                                twice as slow as global memory.
-                                The symbol is defined by default.
-                                The symbol requires that PIXELFORMAT_TOO_SLOW
-                                is defined.
-
-  SERIALIZE_RENDER		Define this symbol to serialize threaded
-  				GIF to bitmap rendering.
-                                When a GIF is displayed with the goAsync option
-                                (the default), the GIF to bitmap rendering is
-                                executed in the context of the draw thread.
-                                If more than one thread is drawing the same GIF
-                                or the GIF is being modified while it is
-                                animating, the GIF to bitmap rendering should be
-                                serialized to guarantee that the bitmap isn't
-                                modified by more than one thread at a time. If
-                                SERIALIZE_RENDER is defined, the draw threads
-                                uses TThread.Synchronize to serialize GIF to
-                                bitmap rendering.
-
-  FIXHEADER_WIDTHHEIGHT_SILENT  Define this symbol to adjust Width and Height
-                                in the header if any of the frames has a larger
-                                Width or Height.
-
-  DEFAULT_GOCLEARLOOP           Define this symbol to clear animation on each
-                                loop before first frame.
-                                Same as adding goClearLoop to DrawOptions.
-                                STRICT_MOZILLA does the same,
-                                but STRICT_MOZILLA does something more.
-
-*)
 
 {$DEFINE REGISTER_TGIFIMAGE}
 {$DEFINE PIXELFORMAT_TOO_SLOW}
@@ -291,142 +193,6 @@ interface
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Delphi 1.x
-{$IFDEF VER80}
-  'Error: TGIFImage does not support Delphi 1.x'
-{$ENDIF}
-
-// Delphi 2.x
-{$IFDEF VER90}
-  {$DEFINE VER9x}
-{$ENDIF}
-
-// C++ Builder 1.x
-{$IFDEF VER93}
-  // Good luck...
-  {$DEFINE VER9x}
-{$ENDIF}
-
-// Delphi 3.x
-{$IFDEF VER100}
-  {$DEFINE VER10_PLUS}
-  {$DEFINE D3_BCB3}
-{$ENDIF}
-
-// C++ Builder 3.x
-{$IFDEF VER110}
-  {$DEFINE VER10_PLUS}
-  {$DEFINE VER11_PLUS}
-  {$DEFINE D3_BCB3}
-  {$DEFINE BAD_STACK_ALIGNMENT}
-{$ENDIF}
-
-// Delphi 4.x
-{$IFDEF VER120}
-  {$DEFINE VER10_PLUS}
-  {$DEFINE VER11_PLUS}
-  {$DEFINE VER12_PLUS}
-  {$DEFINE BAD_STACK_ALIGNMENT}
-{$ENDIF}
-
-// C++ Builder 4.x
-{$IFDEF VER125}
-  {$DEFINE VER10_PLUS}
-  {$DEFINE VER11_PLUS}
-  {$DEFINE VER12_PLUS}
-  {$DEFINE VER125_PLUS}
-  {$DEFINE BAD_STACK_ALIGNMENT}
-{$ENDIF}
-
-// Delphi 5.x
-{$IFDEF VER130}
-  {$DEFINE VER10_PLUS}
-  {$DEFINE VER11_PLUS}
-  {$DEFINE VER12_PLUS}
-  {$DEFINE VER125_PLUS}
-  {$DEFINE VER13_PLUS}
-  {$DEFINE BAD_STACK_ALIGNMENT}
-{$ENDIF}
-
-(*
-// Delphi 6.x
-{$IFDEF VER140}
-  {$WARN SYMBOL_PLATFORM OFF}
-  {$DEFINE VER10_PLUS}
-  {$DEFINE VER11_PLUS}
-  {$DEFINE VER12_PLUS}
-  {$DEFINE VER125_PLUS}
-  {$DEFINE VER13_PLUS}
-  {$DEFINE VER14_PLUS}
-  {$DEFINE BAD_STACK_ALIGNMENT}
-{$ENDIF}
-
-// Delphi 7.x
-{$IFDEF VER150}
-  {$WARN SYMBOL_PLATFORM OFF}
-  {$DEFINE VER10_PLUS}
-  {$DEFINE VER11_PLUS}
-  {$DEFINE VER12_PLUS}
-  {$DEFINE VER125_PLUS}
-  {$DEFINE VER13_PLUS}
-  {$DEFINE VER14_PLUS}
-  {$DEFINE VER15_PLUS}
-  {$DEFINE BAD_STACK_ALIGNMENT}
-{$ENDIF}
-
-// 2008.10.19 ->
-// Delphi 2009
-{$IFDEF VER200}
-  {$WARN SYMBOL_PLATFORM OFF}
-  {$DEFINE VER10_PLUS}
-  {$DEFINE VER11_PLUS}
-  {$DEFINE VER12_PLUS}
-  {$DEFINE VER125_PLUS}
-  {$DEFINE VER13_PLUS}
-  {$DEFINE VER14_PLUS}
-  {$DEFINE VER15_PLUS}
-  {$DEFINE VER20_PLUS}
-  {$DEFINE BAD_STACK_ALIGNMENT}
-{$ENDIF}
-// 2008.10.19 <-
-
-// 2003.03.09 ->
-// Unknown compiler version - assume D7 compatible
-{$IFNDEF VER9x}
-{$IFNDEF VER10_PLUS}
-  {$WARN SYMBOL_PLATFORM OFF}
-  {$DEFINE VER10_PLUS}
-  {$DEFINE VER11_PLUS}
-  {$DEFINE VER12_PLUS}
-  {$DEFINE VER125_PLUS}
-  {$DEFINE VER13_PLUS}
-  {$DEFINE VER14_PLUS}
-  {$DEFINE VER15_PLUS}
-  {$DEFINE BAD_STACK_ALIGNMENT}
-{$ENDIF}
-{$ENDIF}
-// 2003.03.09 <-
-
-// 2009.10.10 ->
-// This ensures that future compilers always have same defines as latest compiler listed here.
-{$IFDEF CONDITIONALEXPRESSIONS}
-  {$IF CompilerVersion >= 21.0}   // >= Delphi 2010
-    {$WARN SYMBOL_PLATFORM OFF}
-    {$WARN SYMBOL_DEPRECATED OFF}
-    {$DEFINE VER10_PLUS}
-    {$DEFINE VER11_PLUS}
-    {$DEFINE VER12_PLUS}
-    {$DEFINE VER125_PLUS}
-    {$DEFINE VER13_PLUS}
-    {$DEFINE VER14_PLUS}
-    {$DEFINE VER15_PLUS}
-    {$DEFINE VER20_PLUS}
-    {$DEFINE BAD_STACK_ALIGNMENT}
-    {$DEFINE VER21_PLUS}
-  {$IFEND}
-{$ENDIF}
-// 2009.10.10 <-
-*)
 
 // 2009.10.14 ->
 // This ensures that future compilers always have same defines as latest compiler listed here.
@@ -828,7 +594,6 @@ type
     function GetExtensionType: TGIFExtensionType; virtual; abstract;
     function GetVersion: TGIFVersion; override;
     function DoReadFromStream(Stream: TStream): TGIFExtensionType;
-    class procedure RegisterExtension(elabel: BYTE; eClass: TGIFExtensionClass);
     class function FindExtension(Stream: TStream): TGIFExtensionClass;
     class function FindSubExtension(Stream: TStream): TGIFExtensionClass; virtual;
   public
@@ -1036,9 +801,7 @@ type
   protected
     function GetExtensionType: TGIFExtensionType; override;
     function GetForegroundColor: TColor;
-    procedure SetForegroundColor(Color: TColor);
     function GetBackgroundColor: TColor;
-    procedure SetBackgroundColor(Color: TColor);
     function GetBounds(Index: integer): WORD;
     procedure SetBounds(Index: integer; Value: WORD);
     function GetCharWidthHeight(Index: integer): BYTE;
@@ -1459,19 +1222,13 @@ type
   // CreateOptimizedPaletteFromManyBitmaps
   //: Performs Color Quantization on multiple bitmaps.
   // The Bitmaps parameter is a list of bitmaps. Returns an optimized palette.
-  function CreateOptimizedPaletteFromManyBitmaps(Bitmaps: TList; Colors, ColorBits: integer;
-    Windows: boolean): hPalette;
+
 
 {$IFDEF VER9x}
   // From Delphi 3 graphics.pas
 type
   TPixelFormat = (pfDevice, pf1bit, pf4bit, pf8bit, pf15bit, pf16bit, pf24bit, pf32bit, pfCustom);
 {$ENDIF}
-
-  procedure InternalGetDIBSizes(Bitmap: HBITMAP; var InfoHeaderSize: Integer;
-    var ImageSize: longInt; PixelFormat: TPixelFormat);
-  function InternalGetDIB(Bitmap: HBITMAP; Palette: HPALETTE;
-   var BitmapInfo; var Bits; PixelFormat: TPixelFormat): Boolean;
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -1544,13 +1301,6 @@ var
   // This will not affect TGIFImage.SaveToStream or SaveToFile.
   GIFImageOptimizeOnStream: boolean = False;
 
-////////////////////////////////////////////////////////////////////////////////
-//
-//                      Design Time support
-//
-////////////////////////////////////////////////////////////////////////////////
-// Dummy component registration for design time support of GIFs in TImage
-procedure Register;
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -1697,22 +1447,6 @@ const
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-//                      Design Time support
-//
-////////////////////////////////////////////////////////////////////////////////
-//: Dummy component registration to add design-time support of GIFs to TImage.
-// Since TGIFImage isn't a component there's nothing to register here, but
-// since Register is only called at design time we can set the design time
-// GIF paint options here (modify as you please):
-procedure Register;
-begin
-  // Don't loop animations at design-time. Animated GIFs will animate once and
-  // then stop thus not using CPU resources and distracting the developer.
-  Exclude(GIFImageDefaultDrawOptions, goLoop);
-end;
-
-////////////////////////////////////////////////////////////////////////////////
-//
 //			Utilities
 //
 ////////////////////////////////////////////////////////////////////////////////
@@ -1790,10 +1524,6 @@ begin
   end;
   Result := Value;
 end;
-{$IFDEF R_PLUS}
-  {$RANGECHECKS ON}
-  {$UNDEF R_PLUS}
-{$ENDIF}
 
 (*
 **  Raise error condition
@@ -1808,24 +1538,6 @@ begin
   raise GIFException.Create(msg) at ReturnAddr;
 end;
 
-(*
-**  Return number bytes required to
-**  hold a given number of bits.
-*)
-function ByteAlignBit(Bits: Cardinal): Cardinal;
-begin
-  Result := (Bits+7) SHR 3;
-end;
-// Rounded up to nearest 2
-function WordAlignBit(Bits: Cardinal): Cardinal;
-begin
-  Result := ((Bits+15) SHR 4) SHL 1;
-end;
-// Rounded up to nearest 4
-function DWordAlignBit(Bits: Cardinal): Cardinal;
-begin
-  Result := ((Bits+31) SHR 5) SHL 2;
-end;
 // Round to arbitrary number of bits
 function AlignBit(Bits, BitsPerPixel, Alignment: Cardinal): Cardinal;
 begin
@@ -1951,561 +1663,15 @@ begin
 end;
 
 
-////////////////////////////////////////////////////////////////////////////////
-//
-//		Delphi 2.x / C++ Builder 1.x support
-//
-////////////////////////////////////////////////////////////////////////////////
-{$IFDEF VER9x}
-var
-  // From Delphi 3 graphics.pas
-  SystemPalette16: HPalette; // 16 color palette that maps to the system palette
-
-type
-  TPixelFormats = set of TPixelFormat;
-
-const
-  // Only pf1bit, pf4bit and pf8bit is supported since they are the only ones
-  // with palettes
-  SupportedPixelformats: TPixelFormats = [pf1bit, pf4bit, pf8bit];
-{$ENDIF}
-
-
-// --------------------------
-// InitializeBitmapInfoHeader
-// --------------------------
-// Fills a TBitmapInfoHeader with the values of a bitmap when converted to a
-// DIB of a specified PixelFormat.
-//
-// Parameters:
-// Bitmap	The handle of the source bitmap.
-// Info		The TBitmapInfoHeader buffer that will receive the values.
-// PixelFormat	The pixel format of the destination DIB.
-//
-{$IFDEF BAD_STACK_ALIGNMENT}
-  // Disable optimization to circumvent optimizer bug...
-  {$IFOPT O+}
-    {$DEFINE O_PLUS}
-    {$O-}
-  {$ENDIF}
-{$ENDIF}
-procedure InitializeBitmapInfoHeader(Bitmap: HBITMAP; var Info: TBitmapInfoHeader;
-  PixelFormat: TPixelFormat);
-// From graphics.pas, "optimized" for our use
-var
-  DIB		: TDIBSection;
-  Bytes		: Integer;
-begin
-  DIB.dsbmih.biSize := 0;
-  Bytes := GetObject(Bitmap, SizeOf(DIB), @DIB);
-  if (Bytes = 0) then
-    Error(sInvalidBitmap);
-
-  if (Bytes >= (sizeof(DIB.dsbm) + sizeof(DIB.dsbmih))) and
-    (DIB.dsbmih.biSize >= sizeof(DIB.dsbmih)) then
-    Info := DIB.dsbmih
-  else
-  begin
-    FillChar(Info, sizeof(Info), 0);
-    with Info, DIB.dsbm do
-    begin
-      biSize := SizeOf(Info);
-      biWidth := bmWidth;
-      biHeight := bmHeight;
-    end;
-  end;
-  case PixelFormat of
-    pf1bit: Info.biBitCount := 1;
-    pf4bit: Info.biBitCount := 4;
-    pf8bit: Info.biBitCount := 8;
-    pf24bit: Info.biBitCount := 24;
-  else
-    Error(sInvalidPixelFormat);
-    // Info.biBitCount := DIB.dsbm.bmBitsPixel * DIB.dsbm.bmPlanes;
-  end;
-  Info.biPlanes := 1;
-  Info.biCompression := BI_RGB; // Always return data in RGB format
-  Info.biSizeImage := AlignBit(Info.biWidth, Info.biBitCount, 32) * Cardinal(abs(Info.biHeight));
-end;
-{$IFDEF O_PLUS}
-  {$O+}
-  {$UNDEF O_PLUS}
-{$ENDIF}
-
-// -------------------
-// InternalGetDIBSizes
-// -------------------
-// Calculates the buffer sizes nescessary for convertion of a bitmap to a DIB
-// of a specified PixelFormat.
-// See the GetDIBSizes API function for more info.
-//
-// Parameters:
-// Bitmap	The handle of the source bitmap.
-// InfoHeaderSize
-//		The returned size of a buffer that will receive the DIB's
-//		TBitmapInfo structure.
-// ImageSize	The returned size of a buffer that will receive the DIB's
-//		pixel data.
-// PixelFormat	The pixel format of the destination DIB.
-//
-procedure InternalGetDIBSizes(Bitmap: HBITMAP; var InfoHeaderSize: Integer;
-  var ImageSize: longInt; PixelFormat: TPixelFormat);
-// From graphics.pas, "optimized" for our use
-var
-  Info		: TBitmapInfoHeader;
-begin
-  InitializeBitmapInfoHeader(Bitmap, Info, PixelFormat);
-  // Check for palette device format
-  if (Info.biBitCount > 8) then
-  begin
-    // Header but no palette
-    InfoHeaderSize := SizeOf(TBitmapInfoHeader);
-    if ((Info.biCompression and BI_BITFIELDS) <> 0) then
-      Inc(InfoHeaderSize, 12);
-  end else
-    // Header and palette
-    InfoHeaderSize := SizeOf(TBitmapInfoHeader) + SizeOf(TRGBQuad) * (1 shl Info.biBitCount);
-  ImageSize := Info.biSizeImage;
-end;
-
-// --------------
-// InternalGetDIB
-// --------------
-// Converts a bitmap to a DIB of a specified PixelFormat.
-//
-// Parameters:
-// Bitmap	The handle of the source bitmap.
-// Pal		The handle of the source palette.
-// BitmapInfo	The buffer that will receive the DIB's TBitmapInfo structure.
-//		A buffer of sufficient size must have been allocated prior to
-//		calling this function.
-// Bits		The buffer that will receive the DIB's pixel data.
-//		A buffer of sufficient size must have been allocated prior to
-//		calling this function.
-// PixelFormat	The pixel format of the destination DIB.
-//
-// Returns:
-// True on success, False on failure.
-//
-// Note: The InternalGetDIBSizes function can be used to calculate the
-// nescessary sizes of the BitmapInfo and Bits buffers.
-//
-function InternalGetDIB(Bitmap: HBITMAP; Palette: HPALETTE;
-  var BitmapInfo; var Bits; PixelFormat: TPixelFormat): Boolean;
-// From graphics.pas, "optimized" for our use
-var
-  OldPal	: HPALETTE;
-  DC		: HDC;
-begin
-  InitializeBitmapInfoHeader(Bitmap, TBitmapInfoHeader(BitmapInfo), PixelFormat);
-  OldPal := 0;
-  DC := CreateCompatibleDC(0);
-  try
-    if (Palette <> 0) then
-    begin
-      OldPal := SelectPalette(DC, Palette, False);
-      RealizePalette(DC);
-    end;
-    Result := (GetDIBits(DC, Bitmap, 0, abs(TBitmapInfoHeader(BitmapInfo).biHeight),
-      @Bits, TBitmapInfo(BitmapInfo), DIB_RGB_COLORS) <> 0);
-  finally
-    if (OldPal <> 0) then
-      SelectPalette(DC, OldPal, False);
-    DeleteDC(DC);
-  end;
-end;
-
-// ----------
-// DIBFromBit
-// ----------
-// Converts a bitmap to a DIB of a specified PixelFormat.
-// The DIB is returned in a TMemoryStream ready for streaming to a BMP file.
-//
-// Note: As opposed to D2's DIBFromBit function, the returned stream also
-// contains a TBitmapFileHeader at offset 0.
-//
-// Parameters:
-// Stream	The TMemoryStream used to store the bitmap data.
-//		The stream must be allocated and freed by the caller prior to
-//		calling this function.
-// Src		The handle of the source bitmap.
-// Pal		The handle of the source palette.
-// PixelFormat	The pixel format of the destination DIB.
-// DIBHeader	A pointer to the DIB's TBitmapInfo (or TBitmapInfoHeader)
-//		structure in the memory stream.
-//		The size of the structure can either be deduced from the
-//		pixel format (i.e. number of colors) or calculated by
-//		subtracting the DIBHeader pointer from the DIBBits pointer.
-// DIBBits	A pointer to the DIB's pixel data in the memory stream.
-//
-procedure DIBFromBit(Stream: TMemoryStream; Src: HBITMAP;
-  Pal: HPALETTE; PixelFormat: TPixelFormat; var DIBHeader, DIBBits: Pointer);
-// (From D2 graphics.pas, "optimized" for our use)
-var
-  HeaderSize		: integer;
-  FileSize		: longInt;
-  ImageSize		: longInt;
-  BitmapFileHeader	: PBitmapFileHeader;
-begin
-  if (Src = 0) then
-    Error(sInvalidBitmap);
-  // Get header- and pixel data size for new pixel format
-  InternalGetDIBSizes(Src, HeaderSize, ImageSize, PixelFormat);
-  // Make room in stream for a TBitmapInfo and pixel data
-  FileSize := sizeof(TBitmapFileHeader) + HeaderSize + ImageSize;
-  Stream.SetSize(FileSize);
-  // Get pointer to TBitmapFileHeader
-  BitmapFileHeader := Stream.Memory;
-  // Get pointer to TBitmapInfo
-  DIBHeader := Pointer(Longint(BitmapFileHeader) + sizeof(TBitmapFileHeader));
-  // Get pointer to pixel data
-  DIBBits := Pointer(Longint(DIBHeader) + HeaderSize);
-  // Initialize file header
-  FillChar(BitmapFileHeader^, sizeof(TBitmapFileHeader), 0);
-  with BitmapFileHeader^ do
-  begin
-    bfType := $4D42; // 'BM' = Windows BMP signature
-    bfSize := FileSize; // File size (not needed)
-    bfOffBits := sizeof(TBitmapFileHeader) + HeaderSize; // Offset of pixel data
-  end;
-  // Get pixel data in new pixel format
-  InternalGetDIB(Src, Pal, DIBHeader^, DIBBits^, PixelFormat);
-end;
-
-// --------------
-// GetPixelFormat
-// --------------
-// Returns the current pixel format of a bitmap.
-//
-// Replacement for delphi 3 TBitmap.PixelFormat getter.
-//
-// Parameters:
-// Bitmap	The bitmap which pixel format is returned.
-//
-// Returns:
-// The PixelFormat of the bitmap
-//
 function GetPixelFormat(Bitmap: TBitmap): TPixelFormat;
-{$IFDEF VER9x}
-// From graphics.pas, "optimized" for our use
-var
-  DIBSection		: TDIBSection;
-  Bytes			: Integer;
-  Handle		: HBitmap;
-begin
-  Result := pfCustom; // This value is never returned
-  // BAD_STACK_ALIGNMENT 
-  // Note: To work around an optimizer bug, we do not use Bitmap.Handle
-  // directly. Instead we store the value and use it indirectly. Unless we do
-  // this, the register containing Bitmap.Handle will be overwritten!
-  Handle := Bitmap.Handle;
-  if (Handle <> 0) then
-  begin
-    Bytes := GetObject(Handle, SizeOf(DIBSection), @DIBSection);
-    if (Bytes = 0) then
-      Error(sInvalidBitmap);
-
-    with (DIBSection) do
-    begin
-      // Check for NT bitmap
-      if (Bytes < (SizeOf(dsbm) + SizeOf(dsbmih))) or (dsbmih.biSize < SizeOf(dsbmih)) then
-        DIBSection.dsBmih.biBitCount := dsbm.bmBitsPixel * dsbm.bmPlanes;
-
-      case (dsBmih.biBitCount) of
-        0: Result := pfDevice;
-        1: Result := pf1bit;
-        4: Result := pf4bit;
-        8: Result := pf8bit;
-        16: case (dsBmih.biCompression) of
-              BI_RGB:
-                Result := pf15Bit;
-              BI_BITFIELDS:
-                if (dsBitFields[1] = $07E0) then
-                  Result := pf16Bit;
-            end;
-        24: Result := pf24Bit;
-        32: if (dsBmih.biCompression = BI_RGB) then
-              Result := pf32Bit;
-      else
-        Error(sUnsupportedBitmap);
-      end;
-    end;
-  end else
-//    Result := pfDevice;
-    Error(sUnsupportedBitmap);
-end;
-{$ELSE}
 begin
   Result := Bitmap.PixelFormat;
 end;
-{$ENDIF}
 
-// --------------
-// SetPixelFormat
-// --------------
-// Changes the pixel format of a TBitmap.
-//
-// Replacement for delphi 3 TBitmap.PixelFormat setter.
-// The returned TBitmap will always be a DIB.
-//
-// Note: Under Delphi 3.x this function will leak a palette handle each time it
-//       converts a TBitmap to pf8bit format!
-//       If possible, use SafeSetPixelFormat instead to avoid this.
-//
-// Parameters:
-// Bitmap	The bitmap to modify.
-// PixelFormat	The pixel format to convert to.
-//
 procedure SetPixelFormat(Bitmap: TBitmap; PixelFormat: TPixelFormat);
-{$IFDEF VER9x}
-var
-  Stream	: TMemoryStream;
-  Header	,
-  Bits		: Pointer;
-begin
-  // Can't change anything without a handle
-  if (Bitmap.Handle = 0) then
-    Error(sInvalidBitmap);
-
-  // Only convert to supported formats
-  if not(PixelFormat in SupportedPixelformats) then
-    Error(sInvalidPixelFormat);
-
-  // No need to convert to same format
-  if (GetPixelFormat(Bitmap) = PixelFormat) then
-    exit;
-
-  Stream := TMemoryStream.Create;
-  try
-    // Convert to DIB file in memory stream
-    DIBFromBit(Stream, Bitmap.Handle, Bitmap.Palette, PixelFormat, Header, Bits);
-    // Load DIB from stream
-    Stream.Position := 0;
-    Bitmap.LoadFromStream(Stream);
-  finally
-    Stream.Free;
-  end;
-end;
-{$ELSE}
 begin
   Bitmap.PixelFormat := PixelFormat;
 end;
-{$ENDIF}
-
-{$IFDEF VER100}
-var
-  pf8BitBitmap: TBitmap = nil;
-{$ENDIF}
-
-// ------------------
-// SafeSetPixelFormat
-// ------------------
-// Changes the pixel format of a TBitmap but doesn't preserve the contents.
-//
-// Replacement for Delphi 3 TBitmap.PixelFormat setter.
-// The returned TBitmap will always be an empty DIB of the same size as the
-// original bitmap.
-//
-// This function is used to avoid the palette handle leak that Delphi 3's
-// SetPixelFormat and TBitmap.PixelFormat suffers from.
-//
-// Parameters:
-// Bitmap	The bitmap to modify.
-// PixelFormat	The pixel format to convert to.
-//
-procedure SafeSetPixelFormat(Bitmap: TBitmap; PixelFormat: TPixelFormat);
-{$IFDEF VER9x}
-begin
-  SetPixelFormat(Bitmap, PixelFormat);
-end;
-{$ELSE}
-{$IFNDEF VER100}
-var
-  Palette		: hPalette;
-begin
-  Bitmap.PixelFormat := PixelFormat;
-
-  // Work around a bug in TBitmap:
-  // When converting to pf8bit format, the palette assigned to TBitmap.Palette
-  // will be a half tone palette (which only contains the 20 system colors).
-  // Unfortunately this is not the palette used to render the bitmap and it
-  // is also not the palette saved with the bitmap.
-  if (PixelFormat = pf8bit) then
-  begin
-    // Disassociate the wrong palette from the bitmap (without affecting
-    // the DIB color table)
-    Palette := Bitmap.ReleasePalette;
-    if (Palette <> 0) then
-      DeleteObject(Palette);
-    // Recreate the palette from the DIB color table
-    Bitmap.Palette;
-  end;
-end;
-{$ELSE}
-var
-  Width			,
-  Height		: integer;
-begin
-  if (PixelFormat = pf8bit) then
-  begin
-    // Partial solution to "TBitmap.PixelFormat := pf8bit" leak
-    // by Greg Chapman <glc@well.com>
-    if (pf8BitBitmap = nil) then
-    begin
-      // Create a "template" bitmap
-      // The bitmap is deleted in the finalization section of the unit.
-      pf8BitBitmap:= TBitmap.Create;
-      // Convert template to pf8bit format
-      // This will leak 1 palette handle, but only once
-      pf8BitBitmap.PixelFormat:= pf8Bit;
-    end;
-    // Store the size of the original bitmap
-    Width := Bitmap.Width;
-    Height := Bitmap.Height;
-    // Convert to pf8bit format by copying template
-    Bitmap.Assign(pf8BitBitmap);
-    // Restore the original size
-    Bitmap.Width := Width;
-    Bitmap.Height := Height;
-  end else
-    // This is safe since only pf8bit leaks
-    Bitmap.PixelFormat := PixelFormat;
-end;
-{$ENDIF}
-{$ENDIF}
-
-
-{$IFDEF VER9x}
-
-// -----------
-// CopyPalette
-// -----------
-// Copies a HPALETTE.
-//
-// Copied from D3 graphics.pas.
-// This is declared private in some old versions of Delphi 2 so we have to
-// implement it here to support those old versions.
-//
-// Parameters:
-// Palette	The palette to copy.
-//
-// Returns:
-// The handle to a new palette.
-//
-function CopyPalette(Palette: HPALETTE): HPALETTE;
-var
-  PaletteSize: Integer;
-  LogPal: TMaxLogPalette;
-begin
-  Result := 0;
-  if Palette = 0 then Exit;
-  PaletteSize := 0;
-  if GetObject(Palette, SizeOf(PaletteSize), @PaletteSize) = 0 then Exit;
-  if PaletteSize = 0 then Exit;
-  with LogPal do
-  begin
-    palVersion := $0300;
-    palNumEntries := PaletteSize;
-    GetPaletteEntries(Palette, 0, PaletteSize, palPalEntry);
-  end;
-  Result := CreatePalette(PLogPalette(@LogPal)^);
-end;
-
-
-// TThreadList implementation from Delphi 3 classes.pas
-constructor TThreadList.Create;
-begin
-  inherited Create;
-  InitializeCriticalSection(FLock);
-  FList := TList.Create;
-end;
-
-destructor TThreadList.Destroy;
-begin
-  LockList;    // Make sure nobody else is inside the list.
-  try
-    FList.Free;
-    inherited Destroy;
-  finally
-    UnlockList;
-    DeleteCriticalSection(FLock);
-  end;
-end;
-
-procedure TThreadList.Add(Item: Pointer);
-begin
-  LockList;
-  try
-    if FList.IndexOf(Item) = -1 then
-      FList.Add(Item);
-  finally
-    UnlockList;
-  end;
-end;
-
-procedure TThreadList.Clear;
-begin
-  LockList;
-  try
-    FList.Clear;
-  finally
-    UnlockList;
-  end;
-end;
-
-function  TThreadList.LockList: TList;
-begin
-  EnterCriticalSection(FLock);
-  Result := FList;
-end;
-
-procedure TThreadList.Remove(Item: Pointer);
-begin
-  LockList;
-  try
-    FList.Remove(Item);
-  finally
-    UnlockList;
-  end;
-end;
-
-procedure TThreadList.UnlockList;
-begin
-  LeaveCriticalSection(FLock);
-end;
-// End of TThreadList implementation
-
-// From Delphi 3 sysutils.pas
-{ CompareMem performs a binary compare of Length bytes of memory referenced
-  by P1 to that of P2.  CompareMem returns True if the memory referenced by
-  P1 is identical to that of P2. }
-function CompareMem(P1, P2: Pointer; Length: Integer): Boolean; assembler;
-asm
-        PUSH    ESI
-        PUSH    EDI
-        MOV     ESI,P1
-        MOV     EDI,P2
-        MOV     EDX,ECX
-        XOR     EAX,EAX
-        AND     EDX,3
-        SHR     ECX,1
-        SHR     ECX,1
-        REPE    CMPSD
-        JNE     @@2
-        MOV     ECX,EDX
-        REPE    CMPSB
-        JNE     @@2
-@@1:    INC     EAX
-@@2:    POP     EDI
-        POP     ESI
-end;
-
-// Dummy ASSERT procedure since ASSERT does not exist in Delphi 2.x
-procedure ASSERT(Condition: boolean; Message: string);
-begin
-end;
-
-{$ENDIF} // Delphi 2.x stuff
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -2531,14 +1697,6 @@ type
 
   TDIBReader = class(TDIB)
   private
-{$ifdef VER9x}
-    FDIB		: TDIBSection;
-    FDC			: HDC;
-    FScanLine		: pointer;
-    FLastRow		: integer;
-    FInfo		: PBitmapInfo;
-    FBytes		: integer;
-{$endif}
   protected
     function GetScanline(Row: integer): pointer; override;
   public
@@ -2592,54 +1750,17 @@ var
 {$endif}
 begin
   inherited Create(ABitmap, APixelFormat);
-{$ifndef VER9x}
-  SetPixelFormat(FBitmap, FPixelFormat);
-{$else}
-  FDC := CreateCompatibleDC(0);
-  SelectPalette(FDC, FBitmap.Palette, False);
-
-  // Allocate DIB info structure
-  InternalGetDIBSizes(ABitmap.Handle, InfoHeaderSize, ImageSize, APixelFormat);
-  GetMem(FInfo, InfoHeaderSize);
-  // Get DIB info
-  InitializeBitmapInfoHeader(ABitmap.Handle, FInfo^.bmiHeader, APixelFormat);
-
-  // Allocate scan line buffer
-  GetMem(FScanLine, ImageSize DIV abs(FInfo^.bmiHeader.biHeight));
-
-  FLastRow := -1;
-{$endif}
+SetPixelFormat(FBitmap, FPixelFormat);
 end;
 
 destructor TDIBReader.Destroy;
 begin
-{$ifdef VER9x}
-  DeleteDC(FDC);
-  FreeMem(FScanLine);
-  FreeMem(FInfo);
-{$endif}
   inherited Destroy;
 end;
 
 function TDIBReader.GetScanline(Row: integer): pointer;
 begin
-{$ifdef VER9x}
-  if (Row < 0) or (Row >= FBitmap.Height) then
-    raise EInvalidGraphicOperation.Create(SScanLine);
-  GDIFlush;
-
-  Result := FScanLine;
-  if (Row = FLastRow) then
-    exit;
-  FLastRow := Row;
-
-  if (FInfo^.bmiHeader.biHeight > 0) then  // bottom-up DIB
-    Row := FInfo^.bmiHeader.biHeight - Row - 1;
-  GetDIBits(FDC, FBitmap.Handle, Row, 1, FScanLine, FInfo^, DIB_RGB_COLORS);
-
-{$else}
-  Result := FBitmap.ScanLine[Row];
-{$endif}
+Result := FBitmap.ScanLine[Row];
 end;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -4632,17 +3753,6 @@ begin
     Colors := 236;
     Offset := 10;
     LogicalPalette.palNumEntries := 256;
-{ Test code
-// 2003.03.06 ->
-    // Get the windows 20 color system palette
-    SystemPalette := GetStockObject(DEFAULT_PALETTE);
-    GetPaletteEntries(SystemPalette, 0, 10, LogicalPalette.palPalEntry[0]);
-    GetPaletteEntries(SystemPalette, 10, 10, LogicalPalette.palPalEntry[10]);
-    Colors := 236;
-    Offset := 20;
-    LogicalPalette.palNumEntries := 256;
-// 2003.03.06 <-
-}
   end else
     Offset := 0;
 
@@ -4678,82 +3788,6 @@ begin
   finally
     DIB.Free;
   end;
-end;
-
-function CreateOptimizedPaletteFromManyBitmaps(Bitmaps: TList; Colors, ColorBits: integer;
-  Windows: boolean): hPalette;
-var
-  SystemPalette		: HPalette;
-  ColorQuantizer	: TColorQuantizer;
-  i			: integer;
-  LogicalPalette	: TMaxLogPalette;
-  RGBQuadArray		: TRGBQuadArray;
-  Offset		: integer;
-  DIB			: TDIBReader;
-begin
-  if (Bitmaps = nil) or (Bitmaps.Count = 0) then
-    Error(sInvalidBitmapList);
-
-  LogicalPalette.palVersion := $0300;
-  LogicalPalette.palNumEntries := Colors;
-// 2003.03.06 ->
-  {reset palette to black}
-  FillChar(LogicalPalette.palPalEntry, SizeOf(LogicalPalette.palPalEntry), 0);
-  for i := 0 to 255 do
-    LogicalPalette.palPalEntry[i].peFlags := PC_NOCOLLAPSE;
-// 2003.03.06 <-
-
-  if (Windows) then
-  begin
-    // Get the windows 20 color system palette
-    SystemPalette := GetStockObject(DEFAULT_PALETTE);
-    GetPaletteEntries(SystemPalette, 0, 10, LogicalPalette.palPalEntry[0]);
-    //GetPaletteEntries(SystemPalette, 10, 10, LogicalPalette.palPalEntry[245]);  // wrong offset
-    GetPaletteEntries(SystemPalette, 10, 10, LogicalPalette.palPalEntry[246]);  // 2003.03.06
-    Colors := 236;
-    Offset := 10;
-    LogicalPalette.palNumEntries := 256;
-{ Test code
-// 2003.03.06 ->
-    // Get the windows 20 color system palette
-    SystemPalette := GetStockObject(DEFAULT_PALETTE);
-    GetPaletteEntries(SystemPalette, 0, 10, LogicalPalette.palPalEntry[0]);
-    GetPaletteEntries(SystemPalette, 10, 10, LogicalPalette.palPalEntry[10]);
-    Colors := 236;
-    Offset := 20;
-    LogicalPalette.palNumEntries := 256;
-// 2003.03.06 <-
-}
-  end else
-    Offset := 0;
-
-  // Normally for 24-bit images, use ColorBits of 5 or 6.  For 8-bit images
-  // use ColorBits = 8.
-  ColorQuantizer := TColorQuantizer.Create(Colors, ColorBits);
-  try
-    for i := 0 to Bitmaps.Count-1 do
-    begin
-      DIB := TDIBReader.Create(TBitmap(Bitmaps[i]), pf24bit);
-      try
-        ColorQuantizer.ProcessImage(DIB);
-      finally
-        DIB.Free;
-      end;
-    end;
-    ColorQuantizer.GetColorTable(RGBQuadArray);
-  finally
-    ColorQuantizer.Free;
-  end;
-
-  for i := 0 to Colors-1 do
-    with LogicalPalette.palPalEntry[i+Offset] do
-    begin
-      peRed   := RGBQuadArray[i].rgbRed;
-      peGreen := RGBQuadArray[i].rgbGreen;
-      peBlue  := RGBQuadArray[i].rgbBlue;
-      peFlags := RGBQuadArray[i].rgbReserved;
-    end;
-  Result := CreatePalette(pLogPalette(@LogicalPalette)^);
 end;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -6222,10 +5256,6 @@ begin
 
   FillChar(FData^, FDataSize, ClearValue);
 
-{$ifdef DEBUG_DECOMPRESSPERFORMANCE}
-  TimeStartDecompress := timeGetTime;
-{$endif}
-
   (*
   ** Read initial code size in bits from stream
   *)
@@ -6399,13 +5429,6 @@ end;
 
 destructor THashTable.Destroy;
 begin
-{$ifdef DEBUG_HASHPERFORMANCE}
-  ShowMessage(
-    Format('Found: %d  HitRate: %.2f',
-      [CountLookupFound, (CountLookupFound+1)/(CountMissFound+1)])+#13+
-    Format('Not found: %d  HitRate: %.2f',
-      [CountLookupNotFound, (CountLookupNotFound+1)/(CountMissNotFound+1)]));
-{$endif}
   FreeMem(HashTable);
   inherited Destroy;
 end;
@@ -6418,15 +5441,6 @@ var
   Count			: longInt;
 {$endif}
 begin
-{$ifdef DEBUG_HASHFILLFACTOR}
-  Count := 0;
-  for i := 0 to HashSize-1 do
-    if (HashTable[i] SHR GIFCodeBits <> HashEmpty) then
-      inc(Count);
-  ShowMessage(format('Size: %d, Filled: %d, Rate %.4f',
-    [HashSize, Count, Count/HashSize]));
-{$endif}
-
   FillChar(HashTable^, sizeof(THashArray), $FF);
 end;
 
@@ -6551,69 +5565,6 @@ end;
 function TGIFStream.Seek(Offset: Longint; Origin: Word): Longint;
 begin
   raise Exception.Create(sInvalidStream);
-end;
-
-////////////////////////////////////////////////////////////////////////////////
-//		TGIFReader - GIF block reader
-////////////////////////////////////////////////////////////////////////////////
-type
-  TGIFReader = class(TGIFStream)
-  public
-    constructor Create(Stream: TStream);
-
-    function Read(var Buffer; Count: Longint): Longint; override;
-  end;
-
-constructor TGIFReader.Create(Stream: TStream);
-begin
-  inherited Create(Stream);
-  FBufferCount := 0;
-end;
-
-function TGIFReader.Read(var Buffer; Count: Longint): Longint;
-var
-  n			: integer;
-  Dst			: PAnsiChar;
-  size			: BYTE;
-begin
-  Dst := @Buffer;
-  Result := 0;
-
-  while (Count > 0) do
-  begin
-    // Get data from buffer
-    while (FBufferCount > 0) and (Count > 0) do
-    begin
-      if (FBufferCount > Count) then
-        n := Count
-      else
-        n := FBufferCount;
-      Move(FBuffer, Dst^, n);
-      dec(FBufferCount, n);
-      dec(Count, n);
-      inc(Result, n);
-      inc(Dst, n);
-    end;
-
-    // Refill buffer when it becomes empty
-    if (FBufferCount <= 0) then
-    begin
-      FStream.Read(size, 1);
-      if (size >= 255) then
-        Error('GIF block too large');
-      FBufferCount := size;
-      if (FBufferCount > 0) then
-      begin
-        n := FStream.Read(FBuffer, size);
-        if (n = FBufferCount) then
-        begin
-          Warning(self, gsWarning, sOutOfData);
-          break;
-        end;
-      end else
-        break;
-    end;
-  end;
 end;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -8660,13 +7611,7 @@ begin
     Height := TBitmap(Source).Height;
 
     PixelFormat := GetPixelFormat(TBitmap(Source));
-{$ifdef VER9x}
-    // Delphi 2 TBitmaps are always DDBs. This means that if a 24 bit
-    // bitmap is loaded in 8 bit device mode, TBitmap.PixelFormat will
-    // be pf8bit, but TBitmap.Palette will be 0!
-    if (TBitmap(Source).Palette = 0) then
-      PixelFormat := pfDevice;
-{$endif}
+
     if (PixelFormat > pf8bit) or (PixelFormat = pfDevice) then
     begin
       // Convert image to 8 bits/pixel or less
@@ -9413,11 +8358,6 @@ begin
   Result := gv89a;
 end;
 
-class procedure TGIFExtension.RegisterExtension(eLabel: BYTE; eClass: TGIFExtensionClass);
-begin
-  GetExtensionList.Add(eLabel, eClass);
-end;
-
 class function TGIFExtension.FindExtension(Stream: TStream): TGIFExtensionClass;
 var
   eLabel		: BYTE;
@@ -9656,19 +8596,9 @@ begin
   Result := SubImage.ColorMap[ForegroundColorIndex];
 end;
 
-procedure TGIFTextExtension.SetForegroundColor(Color: TColor);
-begin
-  ForegroundColorIndex := SubImage.ActiveColorMap.AddUnique(Color);
-end;
-
 function TGIFTextExtension.GetBackgroundColor: TColor;
 begin
   Result := SubImage.ActiveColorMap[BackgroundColorIndex];
-end;
-
-procedure TGIFTextExtension.SetBackgroundColor(Color: TColor);
-begin
-  BackgroundColorIndex := SubImage.ColorMap.AddUnique(Color);
 end;
 
 function TGIFTextExtension.GetBounds(Index: integer): WORD;
@@ -10511,37 +9441,7 @@ begin
   DoStep3 := False;
   DoStep5 := False;
   DoStep6 := False;
-{
-Disposal mode algorithm:
 
-Step 1: Copy destination to backup buffer
-        Always executed before first frame and only once.
-        Done in constructor.
-Step 2: Clear previous frame (implementation is same as step 6)
-        Done implicitly by implementation.
-        Only done explicitly on first frame if goClearOnLoop option is set.
-Step 3: Copy backup buffer to frame buffer
-Step 4: Draw frame
-Step 5: Copy buffer to destination
-Step 6: Clear frame from backup buffer
-+------------+------------------+---------------------+------------------------+
-|New  \  Old |  dmNone          |  dmBackground       |  dmPrevious            |
-+------------+------------------+---------------------+------------------------+
-|dmNone      |                  |                     |                        |
-|            |4. Paint on backup|4. Paint on backup   |4. Paint on backup      |
-|            |5. Restore        |5. Restore           |5. Restore              |
-+------------+------------------+---------------------+------------------------+
-|dmBackground|                  |                     |                        |
-|            |4. Paint on backup|4. Paint on backup   |4. Paint on backup      |
-|            |5. Restore        |5. Restore           |5. Restore              |
-|            |6. Clear backup   |6. Clear backup      |6. Clear backup         |
-+------------+------------------+---------------------+------------------------+
-|dmPrevious  |                  |                     |                        |
-|            |                  |3. Copy backup to buf|3. Copy backup to buf   |
-|            |4. Paint on dest  |4. Paint on buf      |4. Paint on buf         |
-|            |                  |5. Copy buf to dest  |5. Copy buf to dest     |
-+------------+------------------+---------------------+------------------------+
-}
   case (Disposal) of
     dmNone, dmNoDisposal:
       begin
@@ -10612,17 +9512,6 @@ Step 6: Clear frame from backup buffer
   FStarted := True;
 end;
 
-// Prefetch bitmap
-// Used to force the GIF image to be rendered as a bitmap
-{$ifdef SERIALIZE_RENDER}
-procedure TGIFPainter.PrefetchBitmap;
-begin
-  // Touch current bitmap to force bitmap to be rendered
-  if not((FImage.Images[ActiveImage].Empty) or (FImage.Images[ActiveImage].HasBitmap)) then
-    FImage.Images[ActiveImage].Bitmap;
-end;
-{$endif}
-
 // Main thread execution loop - This is where it all happens...
 procedure TGIFPainter.Execute;
 var
@@ -10651,16 +9540,7 @@ var
   end;
 
 begin
-{
-  Disposal:
-    dmNone: Same as dmNodisposal
-    dmNoDisposal: Do not dispose
-    dmBackground: Clear with background color *)
-    dmPrevious: Previous image
-    *) Note: Background color should either be a BROWSER SPECIFIED Background
-       color (DrawBackgroundColor) or the background image if any frames are
-       transparent.
-}
+
   try
     try
       if (goValidateCanvas in FDrawOptions) then
@@ -11121,14 +10001,8 @@ function THistogram.Prune: integer;
 var
   i, j			: integer;
 begin
-  (*
-  **  Sort by usage count
-  *)
   FList.Sort(CompareCount);
 
-  (*
-  **  Determine number of used colors
-  *)
   for i := 0 to FCount-1 do
     // Find first unused color entry
     if (POptimizeEntry(FList[i])^.Count = 0) then
@@ -12173,11 +11047,6 @@ begin
   end;
 end;
 
-// Obsolete
-// procedure TGIFImage.Changed(Sender: TObject);
-// begin
-//  inherited Changed(Sender);
-// end;
 
 procedure TGIFImage.SetHeight(Value: Integer);
 var
@@ -12422,15 +11291,6 @@ begin
       not(goAutoDither in DrawOptions));
 end;
 
-{$IFDEF VER9x}
-procedure TGIFImage.Progress(Sender: TObject; Stage: TProgressStage;
-  PercentDone: Byte; RedrawNow: Boolean; const R: TRect; const Msg: string);
-begin
-  if Assigned(FOnProgress) then
-    FOnProgress(Sender, Stage, PercentDone, RedrawNow, R, Msg);
-end;
-{$ENDIF}
-
 procedure TGIFImage.StopDraw;
 {$IFNDEF VER14_PLUS}  // 2001.07.23
 var
@@ -12462,26 +11322,6 @@ begin
 // 2002.07.07
     if (GetCurrentThreadID = MainThreadID) then
       while CheckSynchronize do {loop};
-{$ELSE}
-    // Process Messages to make Synchronize work
-    // (Instead of Application.ProcessMessages)
-//{$IFDEF VER14_PLUS}  // 2001.07.23
-//    Break;  // 2001.07.23
-//    Sleep(0); // Yield  // 2001.07.23
-//{$ELSE}  // 2001.07.23
-    ThreadWindow := FindWindow('TThreadWindow', nil);
-    while PeekMessage(Msg, ThreadWindow, CM_DESTROYWINDOW, CM_EXECPROC, PM_REMOVE) do
-    begin
-      if (Msg.Message <> WM_QUIT) then
-      begin
-        TranslateMessage(Msg);
-        DispatchMessage(Msg);
-      end else
-      begin
-        PostQuitMessage(Msg.WParam);
-        exit;
-      end;
-    end;
 {$ENDIF}  // 2001.07.23
     Sleep(0); // Yield
 
@@ -12493,10 +11333,6 @@ procedure TGIFImage.Draw(ACanvas: TCanvas; const Rect: TRect);
 var
   Canvas		: TCanvas;
   DestRect		: TRect;
-{$IFNDEF VER14_PLUS}  // 2001.07.23
-  Msg			: TMsg;
-  ThreadWindow		: HWND;
-{$ENDIF}  // 2001.07.23
 
   procedure DrawTile(Rect: TRect; Bitmap: TBitmap);
   var
@@ -12596,27 +11432,6 @@ begin
             if not CheckSynchronize then
               Sleep(0); // Yield
           end;
-{$ELSE}
-//{$IFNDEF VER14_PLUS}  // 2001.07.23
-          ThreadWindow := FindWindow('TThreadWindow', nil);
-          // Wait for thread to render first frame
-          while (FDrawPainter <> nil) and (not FDrawPainter.Terminated) and
-            (not FDrawPainter.Started) do
-            // Process Messages to make Synchronize work
-            // (Instead of Application.ProcessMessages)
-            if PeekMessage(Msg, ThreadWindow, CM_DESTROYWINDOW, CM_EXECPROC, PM_REMOVE) then
-            begin
-              if (Msg.Message <> WM_QUIT) then
-              begin
-                TranslateMessage(Msg);
-                DispatchMessage(Msg);
-              end else
-              begin
-                PostQuitMessage(Msg.WParam);
-                exit;
-              end;
-            end else
-              Sleep(0); // Yield
 {$ENDIF}  // 2001.07.23
           // Draw frame to destination
           DrawTile(Rect, Bitmap);
@@ -12698,26 +11513,6 @@ var
   Msg			: TMsg;
   ThreadWindow		: HWND;
 {$ENDIF}  // 2001.07.23
-
-{$IFNDEF VER14_PLUS}  // 2001.07.23
-  procedure KillThreads;
-  var
-    i			: integer;
-  begin
-    with FPainters.LockList do
-      try
-        for i := Count-1 downto 0 do
-          if (goAsync in TGIFPainter(Items[i]).DrawOptions) then
-          begin
-            TerminateThread(TGIFPainter(Items[i]).Handle, 0);
-            Delete(i);
-          end;
-      finally
-        FPainters.UnLockList;
-      end;
-  end;
-{$ENDIF}  // 2001.07.23
-
 begin
   try
     // Loop until all have died
@@ -12749,30 +11544,6 @@ begin
 // 2002.07.07
       if (GetCurrentThreadID = MainThreadID) then
         while CheckSynchronize do {loop};
-{$ELSE}
-      // Process Messages to make TThread.Synchronize work
-      // (Instead of Application.ProcessMessages)
-//{$IFDEF VER14_PLUS}  // 2001.07.23
-//      Exit;  // 2001.07.23
-//{$ELSE}  // 2001.07.23
-      ThreadWindow := FindWindow('TThreadWindow', nil);
-      if (ThreadWindow = 0) then
-      begin
-        KillThreads;
-        Exit;
-      end;
-      while PeekMessage(Msg, ThreadWindow, CM_DESTROYWINDOW, CM_EXECPROC, PM_REMOVE) do
-      begin
-        if (Msg.Message <> WM_QUIT) then
-        begin
-          TranslateMessage(Msg);
-          DispatchMessage(Msg);
-        end else
-        begin
-          KillThreads;
-          Exit;
-        end;
-      end;
 {$ENDIF}  // 2001.07.23
       Sleep(0);
     until (False);
@@ -12828,26 +11599,9 @@ begin
     FOnWarning(Sender, Severity, Message);
 end;
 
-{$IFDEF VER12_PLUS}
-  {$IFNDEF VER14_PLUS} // not anymore need for Delphi 6 and up  // 2001.07.23
-type
-  TDummyThread = class(TThread)
-  protected
-    procedure Execute; override;
-  end;
-procedure TDummyThread.Execute;
-begin
-end;
-  {$ENDIF}  // 2001.07.23
-{$ENDIF}
 
 var
   DesktopDC: HDC;
-{$IFDEF VER12_PLUS}
-  {$IFNDEF VER14_PLUS} // not anymore need for Delphi 6 and up  // 2001.07.23
-  DummyThread: TThread;
-  {$ENDIF}  // 2001.07.23
-{$ENDIF}
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -12862,7 +11616,6 @@ initialization
 {$IFDEF VER20_PLUS}
   CF_GIF := RegisterClipboardFormat(PWideChar(sGIFImageFile));
 {$ELSE}
-  CF_GIF := RegisterClipboardFormat(PAnsiChar(sGIFImageFile));
 {$ENDIF}
 // 2008.10.19 <-
   TPicture.RegisterClipboardFormat(CF_GIF, TGIFImage);
@@ -12874,26 +11627,6 @@ initialization
   finally
     ReleaseDC(0, DesktopDC);
   end;
-
-{$IFDEF VER9x}
-  // Note: This doesn't return the same palette as the Delphi 3 system palette
-  // since the true system palette contains 20 entries and the Delphi 3 system
-  // palette only contains 16.
-  // For our purpose this doesn't matter since we do not care about the actual
-  // colors (or their number) in the palette.
-  // Stock objects doesn't have to be deleted.
-  SystemPalette16 := GetStockObject(DEFAULT_PALETTE);
-{$ENDIF}
-{$IFDEF VER12_PLUS}
-  // Make sure that at least one thread always exist.
-  // This is done to circumvent a race condition bug in Delphi 4.x and later:
-  // When threads are deleted and created in rapid succesion, a situation might
-  // arise where the thread window is deleted *after* the threads it controls
-  // has been created. See the Delphi Bug Lists for more information.
-  {$IFNDEF VER14_PLUS} // not anymore need for Delphi 6 and up  // 2001.07.23
-  DummyThread := TDummyThread.Create(True);
-  {$ENDIF}  // 2001.07.23
-{$ENDIF}
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -12907,23 +11640,6 @@ finalization
   {$IFDEF REGISTER_TGIFIMAGE}
     TPicture.UnregisterGraphicClass(TGIFImage);
   {$ENDIF}
-  {$IFDEF VER100}
-  if (pf8BitBitmap <> nil) then
-    pf8BitBitmap.Free;
-  {$ENDIF}
-{$ENDIF}
-{$IFDEF VER12_PLUS}
-  {$IFNDEF VER14_PLUS} // not anymore need for Delphi 6 and up  // 2001.07.23
-  if (DummyThread <> nil) then
-// 2006.10.16 ->
-//    DummyThread.Free;
-  begin
-    DummyThread.Resume;
-    DummyThread.WaitFor;
-    DummyThread.Free;
-  end;
-// 2006.10.16 <-
-  {$ENDIF}  // 2001.07.23
 {$ENDIF}
 end.
 
