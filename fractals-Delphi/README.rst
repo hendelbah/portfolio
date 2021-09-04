@@ -19,7 +19,7 @@ How to use
 The application draws the Mandelbrot set when you simply press the ``draw`` button.
 If you used some feature below an nothing happened press this button again.
 
-**General features:**
+**Basic :**
 
 - You can specify number of max iterations that algorithm performs in the top left
   corner field. Bigger number makes the fractal more detailed but computation can
@@ -36,7 +36,7 @@ If you used some feature below an nothing happened press this button again.
 
 - You can save current image in the app directory with ``Save image`` button
 
-**The next thing is Julia set drawing:**
+**The next thing - Julia set drawing:**
 
 - Better you have set the droplist value (second GUI element from top row) to ``2``
 
@@ -57,7 +57,7 @@ If you used some feature below an nothing happened press this button again.
 - The resulting Julia set is something similar to surroundings of a point that you
   picked on the Mandelbrot set, so i recommend you to pick points near the black regions.
 
-**The last and the most cool thing is GIF generation, I might call it "kaleidoscope")):**
+**The last and the most cool thing - GIF generation, I might call it "kaleidoscope")):**
 
 - It works properly only if you have set the droplist value to ``2``
 
