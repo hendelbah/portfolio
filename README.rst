@@ -74,4 +74,4 @@ Delphi that I had been taught in school.
 
 It was made with Embarcadero RAD studio IDE
 
-I think the application is very fun.
+I think the application is very fun, hope you'll try it.
