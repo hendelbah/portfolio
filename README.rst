@@ -85,5 +85,3 @@ Delphi I had been taught in school.
 
 It was made with Embarcadero RAD studio IDE, and uses external GifImage
 library for saving GIF (it's quite large)
-
-I think this application is very fun, hope you'll **try** it.
