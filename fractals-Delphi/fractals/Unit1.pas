@@ -61,6 +61,7 @@ type
     procedure Timer3Timer(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
+    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
 
   private
     { Private declarations }
@@ -778,6 +779,24 @@ case button of
   end;
 end;
 
+end;
+
+
+
+procedure TForm1.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+var cl1:tpoint;
+begin
+if m then
+begin
+  getcursorpos(cl1);
+  cl1.X:=cl1.X-form1.ClientOrigin.X;
+  cl1.Y:=cl1.Y-form1.ClientOrigin.Y;
+  form1.Image1.Left:=cl1.X-cl.X;
+  form1.Image1.Top:=cl1.Y-cl.Y;
+end;
+if debug and not thread then
+form1.Caption:=floattostr((x-cx)/w*xscale/scale)+' '+floattostr((y-cy)/h*yscale/scale) ;
 end;
 
 procedure TForm1.FormMouseUp(Sender: TObject; Button: TMouseButton;

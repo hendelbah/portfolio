@@ -24,6 +24,7 @@ object Form1: TForm1
   OnKeyDown = FormKeyDown
   OnKeyUp = FormKeyUp
   OnMouseDown = FormMouseDown
+  OnMouseMove = FormMouseMove
   OnMouseUp = FormMouseUp
   OnMouseWheelDown = FormMouseWheelDown
   OnMouseWheelUp = FormMouseWheelUp
@@ -38,6 +39,7 @@ object Form1: TForm1
     Height = 185
     OnClick = Image1Click
     OnMouseDown = FormMouseDown
+    OnMouseMove = FormMouseMove
     OnMouseUp = FormMouseUp
   end
   object Button1: TSpeedButton
