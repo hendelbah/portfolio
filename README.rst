@@ -12,14 +12,14 @@ Listed from new to old:
 
 Web Monaco report
 -----------------
-Web application for showing Monaco 2018 Racing statistics. There is a web interface and restAPI.
+Web application for showing Monaco 2018 Racing statistics. There is a web interface and REST API.
 
 This is a project for FoxmindEd Python courses. It is well documented
 and covered with tests
 
 It uses:
 
-- **Flask, Jinja, flasgger, SQLite3, peewee**
+- **Flask, Jinja, flasgger, peewee**
 - **HTML, CSS, SQL**
 - **REST API**
 - **pytest**
