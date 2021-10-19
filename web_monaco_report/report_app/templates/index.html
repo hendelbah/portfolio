@@ -11,12 +11,12 @@ Monaco 2018 racing
 {% block body %}
 <ul class="main_menu">
     <li class="main_menu_item">
-        <a href="{{url_for('routes.report')}}">Racing statistics</a>
-        (<a href="{{url_for('routes.report', order='desc')}}">reversed</a>)
+        <a href="{{url_for('.report')}}">Racing statistics</a>
+        (<a href="{{url_for('.report', order='desc')}}">reversed</a>)
     </li>
     <li class="main_menu_item">
-        <a href="{{url_for('routes.drivers')}}">Drivers</a>
-        (<a href="{{url_for('routes.drivers', order='desc')}}">reversed</a>)
+        <a href="{{url_for('.drivers')}}">Drivers</a>
+        (<a href="{{url_for('.drivers', order='desc')}}">reversed</a>)
     </li>
 </ul>
 {%- endblock %}

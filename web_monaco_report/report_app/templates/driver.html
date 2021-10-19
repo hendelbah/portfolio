@@ -13,7 +13,7 @@
     <table>
         <tr>
             <th>Place:</th>
-            <td>{{ driver.index }}</td>
+            <td>{{ driver.rank }}</td>
         </tr>
         <tr>
             <th>Code:</th>
@@ -38,7 +38,7 @@
 {% block tail %}
 <ul class="menu">
     <li class="menu_item">
-        <a href="{{ url_for('routes.drivers', order=order) }}">Return to drivers list</a>
+        <a href="{{ url_for('.drivers', order=order) }}">Return to drivers list</a>
     </li>
 </ul>
 {%- endblock %}

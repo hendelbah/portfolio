@@ -1,3 +1,4 @@
+{% set page = '.drivers' %}
 {% extends 'table_tpl.html' -%}
 
 {% block title -%}
@@ -14,10 +15,10 @@ Drivers list
     </tr>
     {% for driver in drivers -%}
     <tr>
-        <td class="col_index">{{ driver.index }}.</td>
+        <td class="col_index">{{ driver.rank }}.</td>
         <td>{{ driver.full_name }}</td>
         <td class="col_code">
-            <a href="{{ url_for('routes.drivers', driver_id=driver.code, order=order) }}">{{ driver.code }}</a>
+            <a href="{{ url_for('.drivers', driver_id=driver.code, order=order) }}">{{ driver.code }}</a>
         </td>
     </tr>
     {%- endfor %}
@@ -26,6 +27,6 @@ Drivers list
 
 
 {% block menu_item2 -%}
-<a href="{{ url_for('routes.report', order=order) }}">Return to report page</a>
+<a href="{{ url_for('.report', order=order) }}">Return to report page</a>
 {%- endblock %}
 

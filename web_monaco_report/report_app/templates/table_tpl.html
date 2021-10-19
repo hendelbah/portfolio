@@ -5,7 +5,7 @@
     {%- block table -%}
     {% endblock %}
     <div class="table_action">
-        <a class="reverse_link" href="{{ url_for('routes.report', order=reversed_order) }}">Change order</a>
+        <a class="reverse_link" href="{{ url_for(page, order=reversed_order) }}">Change order</a>
     </div>
 </div>
 {%- endblock %}
@@ -13,7 +13,7 @@
 {% block tail %}
 <ul class="menu">
     <li class="menu_item">
-        <a href="{{ url_for('routes.index') }}">Return to index page</a>
+        <a href="{{ url_for('.index') }}">Return to index page</a>
     </li>
     <li class="menu_item">
         {% block menu_item2 -%}
