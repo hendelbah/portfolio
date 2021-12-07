@@ -1,9 +1,8 @@
 Report of Monaco 2018 Racing
 ----------------------------
 
-This application can build racing report from `rest_report/static/report_data`
-and represent it in web pages. Also it has API.
-
+This web application shows report of Monaco 2018 Racing.
+Also it has restAPI. All data is stored in SQLite DB
 
 
 Web interface
@@ -24,8 +23,8 @@ Each route could get order parameter
 API
 ```
 
-API is available at http://localhost:5000/api/v1/ .
-There is detailed specification which can be seen through swagger(flasgger).
+There is restful API, available at http://localhost:5000/api/v1/ .
+There is detailed specification which can be seen through swagger(http://localhost:5000/apidocs/).
 
 Endpoints:
 

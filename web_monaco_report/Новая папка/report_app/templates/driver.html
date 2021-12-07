@@ -1,0 +1,44 @@
+{% extends 'base.html' -%}
+
+{% block title -%}
+{{ driver.full_name }}
+{%- endblock %}
+
+{% block header -%}
+<h2>Statistics about {{ driver.full_name }}:</h2>
+{%- endblock %}
+
+{% block body %}
+<div class="driver_table">
+    <table>
+        <tr>
+            <th>Place:</th>
+            <td>{{ driver.rank }}</td>
+        </tr>
+        <tr>
+            <th>Code:</th>
+            <td>{{ driver.code }}</td>
+        </tr>
+        <tr>
+            <th>Full name:</th>
+            <td>{{ driver.full_name }}</td>
+        </tr>
+        <tr>
+            <th>Car:</th>
+            <td>{{ driver.car }}</td>
+        </tr>
+        <tr>
+            <th>Best lap time:</th>
+            <td>{{ driver.lap_time }}</td>
+        </tr>
+    </table>
+</div>
+{%- endblock %}
+
+{% block tail %}
+<ul class="menu">
+    <li class="menu_item">
+        <a href="{{ url_for('.drivers', order=order) }}">Return to drivers list</a>
+    </li>
+</ul>
+{%- endblock %}

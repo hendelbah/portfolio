@@ -1,0 +1,152 @@
+openapi: 3.1.0
+info:
+  title: Monaco 2018 Racing report
+  version: 1.0.0
+  description: Api for accessing racing statistics data
+servers:
+  - url: /api/v1
+    description: api base path
+paths:
+  /report/:
+    get:
+      parameters:
+        - $ref: '#/components/parameters/format'
+      responses:
+        '200':
+          description: List of drivers statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/report'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/report'
+        '400':
+          $ref: '#/components/responses/FormatError'
+  /report/{driver_id}:
+    get:
+      parameters:
+        - in: path
+          name: driver_id
+          required: true
+          description: Driver's unique abbreviation
+          schema:
+            $ref: '#/components/schemas/drivers_id'
+        - $ref: '#/components/parameters/format'
+      responses:
+        '200':
+          description: Statistics about driver
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/driver'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/driver'
+        '400':
+          $ref: '#/components/responses/FormatError'
+        '404':
+          description: Driver is not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Driver is not found
+  /drivers/:
+    get:
+      parameters:
+        - $ref: '#/components/parameters/format'
+      responses:
+        '200':
+          description: Driver codes list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/drivers'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/drivers'
+        '400':
+          $ref: '#/components/responses/FormatError'
+
+components:
+  parameters:
+    format:
+      name: format
+      in: query
+      required: false
+      description: Output data format
+      schema:
+        type: string
+        default: json
+        enum:
+          - json
+          - xml
+  responses:
+    FormatError:
+      description: Wrong format value
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: object
+                properties:
+                  format:
+                    type: string
+                    example: pdf is not a valid choice
+  schemas:
+    drivers_id:
+      type: string
+      pattern: ^[A-Z]{3}$
+      example: LHM
+      description: Driver's unique abbreviation
+    driver:
+      type: object
+      properties:
+        rank:
+          type: integer
+          description: Place in the statistics table
+          example: 1
+        code:
+          $ref: '#/components/schemas/drivers_id'
+        full_name:
+          type: string
+          description: Driver's full name
+          example: Lewis Hamilton
+        car:
+          type: string
+          description: Name of the driver's car
+          example: MERCEDES
+        lap_time:
+          type: string
+          pattern: ^[0-2]?\d:[0-5]\d:[0-5]\d.\d{3}$
+          description: Best lap duration
+          example: 0:53:12.460
+    report:
+      type: array
+      items:
+        allOf:
+          - $ref: '#/components/schemas/driver'
+          - type: object
+            xml:
+              name: item
+      xml:
+        wrapped: true
+    drivers:
+      type: array
+      items:
+        type: object
+        properties:
+          full_name:
+            $ref: '#/components/schemas/driver/properties/full_name'
+          code:
+            $ref: '#/components/schemas/driver/properties/code'
+        xml:
+          name: item
+      xml:
+        wrapped: true
