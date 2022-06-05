@@ -1,0 +1,48 @@
+{% set title = 'Appointment' %}
+
+
+{% extends 'doctor_panel/base.html' -%}
+
+
+{%- from 'macros.html' import render_field -%}
+
+
+{%- block header %}
+{{ 'View' if readonly else 'Fill out'}} appointment info
+{%- endblock %}
+
+
+{%- block body %}
+<div class="info-block">
+    <div class="info-item">
+        <form class="common-form" method="post">
+            <div class="field-container">
+                <label>Doctor's full name:</label>
+                <span>{{ item.doctor.full_name }}</span>
+            </div>
+            <div class="field-container">
+                <label>Patient's full name:</label>
+                <span>{{ item.patient.full_name }}</span>
+            </div>
+            <div class="field-container">
+                <label>Date:</label>
+                <span>{{ item.date }}</span>
+            </div>
+            <div class="field-container">
+                <label>Time:</label>
+                <span>{{ item.time }}</span>
+            </div>
+            {{ form.hidden_tag() }}
+            {%- set kwargs = {'readonly': ''} if readonly else {} %}
+            {{ render_field(form.conclusion, kwargs) }}
+            {{ render_field(form.prescription, kwargs) }}
+            {{ render_field(form.bill, kwargs) }}
+            {%- if not readonly %}
+            <div class="submit-in-end">
+                <input id="submit" name="submit" type="button" value="Save changes">
+            </div>
+            {%- endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}

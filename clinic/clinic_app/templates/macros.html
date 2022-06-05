@@ -1,0 +1,147 @@
+{% macro render_field(field, kwargs={}) -%}
+<div class="validated-field">
+    <div class="field-container">
+        {{ field.label() }}
+        {%- if field.errors -%}
+        {{ field(class='invalid-input') }}
+        {%- else -%}
+        {{ field(**kwargs) }}
+        {%- endif -%}
+    </div>
+    {%- if field.errors -%}
+    <div class="invalid-container">
+        {% for e in field.errors -%}
+        <label class="invalid-feedback" style="margin-block:unset">
+            {{ e }}
+        </label>
+        {%- endfor %}
+    </div>
+    {%- endif -%}
+</div>
+{%- endmacro -%}
+
+
+{%- macro pagination(data) -%}
+<div class="pagination flex-col">
+    <div class="pagination-body flex-col">
+        {%- if data.items %}
+        {{ caller() }}
+        {% else %}
+        <label style="align-self:center">Nothing...</label>
+        {%- endif %}
+    </div>
+    <hr/>
+    <div class="pagination-tail controls">
+        {% if data.has_prev -%}
+        {% if data.page == 2 -%}
+        {% set prev = url_for(request.endpoint, **data.filters) %}
+        {%- else -%}
+        {% set prev = url_for(request.endpoint, page=data.page - 1, per_page=data.per_page, **data.filters) %}
+        {%- endif -%}
+        <a class="change-page" href="{{ prev }}" style="visibility:visible"><< Prev</a>
+        {%- else -%}
+        <a class="change-page" style="visibility:hidden"><< Prev</a>
+        {%- endif %}
+        <label id="pages">
+            Page <b>{{data.page}}</b> of <b>{{data.pages}}</b>
+            ({{data.items|length}} of {{data.total}} items)
+        </label>
+        {% if data.has_next -%}
+        {% set next = url_for(request.endpoint, page=data.page + 1, per_page=data.per_page, **data.filters) -%}
+        <a class="change-page" href="{{ next }}" style="visibility:visible">Next >></a>
+        {%- else -%}
+        <a class="change-page" style="visibility:hidden">Next >></a>
+        {%- endif %}
+    </div>
+</div>
+{%- endmacro %}
+
+
+{%- macro render_admin_controls(item, endpoints, key_attr=None, item_name='', book_params={}) -%}
+
+<td class="action controls">
+    <div class="actions">
+        {%- if book_params %}
+        <div>
+            {%- set _ = book_params.update({item_name: item.uuid}) %}
+            <a class="select-link action-link"
+               href="{{ url_for('admin.new_appointment', **book_params) }}">
+                {{ 'select' if act else 'book appointment' }}
+            </a>
+        </div>
+        {%- endif %}
+        {%- if not (act and book_params) %}
+        <div>
+            <a class="edit-link action-link" href="{{ url_for(endpoints['item'], uuid=item.uuid) }}">edit</a>
+            <a class="del-link action-link"
+               onclick="confirmPostEmpty('Delete {{item_name}} {{item|attr(key_attr)}}?',
+               '{{url_for(endpoints['delete'], uuid=item.uuid)}}')">delete</a>
+        </div>
+        {%- endif %}
+    </div>
+</td>
+
+{%- endmacro %}
+
+
+{%- macro paginated_table(data, table_headers, action=True) -%}
+
+{%- set pagination_content %}
+{%- set act = request.args.get('act') %}
+<table class="records-table{{ ' animated' if act else '' }}">
+    <tr class="table-header">
+        <th>№</th>
+        {%- for header in table_headers %}
+        <th>{{ header }}</th>
+        {%- endfor %}
+        {%- if action %}
+        <th>action</th>
+        {%- endif %}
+    </tr>
+    {%- for item in data.items %}
+    <tr>
+        <td>{{ (data.page - 1) * data.per_page + loop.index }}</td>
+        {{ caller(item) }}
+    </tr>
+    {% endfor %}
+</table>
+{%- endset %}
+
+{%- call pagination(data) %}
+{{ pagination_content }}
+{%- endcall %}
+
+{%- endmacro %}
+
+
+{%- macro side_menu_item(active, name, link) -%}
+
+<div class="side-menu-item{% if active %} side-menu-item-active{% endif %}">
+    <a href="{{ link }}">{{ name }}</a>
+</div>
+
+{%- endmacro %}
+
+
+{% macro render_filters(form, item_endpoint=None) -%}
+
+<div class="filters-block controls">
+    {%- if item_endpoint is not none %}
+    <div class="new-record">
+        <a href="{{ url_for(item_endpoint, uuid='new') }}">Create new</a>
+    </div>
+    {%- endif %}
+    <form class="filters" method="post">
+        <label class="filters-field" style="font-size:20px">Filters:</label>
+        {{ form.hidden_tag() }}
+        {{ caller() }}
+        <div class="filters-field">
+            {{ form.submit(style='font-weight:bold') }}
+        </div>
+        {%- set act = request.args.get('act') or None %}
+        <input type="reset" value="Reset">
+        <a class="filters-field" href="{{ url_for(request.endpoint, act=act) }}">Clear</a>
+    </form>
+</div>
+
+{%- endmacro -%}

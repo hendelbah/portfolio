@@ -1,0 +1,81 @@
+{% set title='Profile' -%}
+
+{% extends 'base.html' -%}
+
+{%- from 'macros.html' import render_field -%}
+
+{% block side_menu -%}
+<div class="side-menu-item {% if form.is_submitted() %}side-menu-item-active{% endif %}" id="change-pass-button">
+    <a onclick="switch_pass_change()">Change password</a>
+</div>
+{%- endblock %}
+
+{%- block header -%}
+Profile
+{%- endblock %}
+
+{% block body -%}
+<script>
+function switch_pass_change() {
+  var pass_form = document.getElementById("change-pass");
+  var pass_button = document.getElementById("change-pass-button");
+  if (pass_form.style.display === "none") {
+    pass_form.style.display = "flex";
+    pass_button.classList.add('side-menu-item-active');
+  }
+  else {
+    pass_form.style.display = "none";
+    pass_button.classList.remove('side-menu-item-active');
+  }
+}
+
+
+
+
+</script>
+
+<div class="info-block flex-col">
+    <div class="info-item">
+        <label>Email: <span style="color:brown">{{ current_user.email }}</span></label>
+    </div>
+    {% if current_user.is_admin %}
+    <div class="info-item">
+        <label style="color:green">You are an administrator.</label>
+    </div>
+    {% endif %}
+    {% if current_user.doctor %}
+    <div class="info-item">
+        <label>You have related doctor's account:</label>
+        <table class="profile-doctor">
+            <tr>
+                <th>Full name:</th>
+                <td>{{ current_user.doctor.full_name }}</td>
+            </tr>
+            <tr>
+                <th>Experience years:</th>
+                <td>{{ current_user.doctor.experience_years }}</td>
+            </tr>
+            <tr>
+                <th>Speciality:</th>
+                <td>{{ current_user.doctor.speciality }}</td>
+            </tr>
+            <tr>
+                <th>Info:</th>
+                <td>{{ current_user.doctor.info }}</td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+    <hr align="left" width="80%">
+    <div class="info-item" id="change-pass" style="{% if not form.is_submitted() %}display:none{% endif %}">
+        <form class="common-form" method="post">
+            {{ form.hidden_tag() }}
+            {{ render_field(form.password) }}
+            {{ render_field(form.new_pass) }}
+            {{ render_field(form.confirm) }}
+            <div class="submit-in-end">{{ form.submit() }}</div>
+        </form>
+    </div>
+</div>
+
+{%- endblock %}

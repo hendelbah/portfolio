@@ -1,0 +1,36 @@
+{% extends 'base.html' -%}
+
+
+{%- set active_menu_item = 0 if active_menu_item is not defined else active_menu_item %}
+
+
+{% block title -%}
+
+{% if title is defined -%}
+Admin panel - {{ title }}
+{%- else -%}
+Admin panel
+{%- endif %}
+
+{%- endblock %}
+
+
+{% block side_menu -%}
+
+<div class="side-menu-item" id="side-menu-header">
+    <label>Administrator panel</label>
+</div>
+<div class="side-menu-item{% if active_menu_item == 1 %} side-menu-item-active{% endif %}">
+    <a href="{{ url_for('admin.users') }}">Users</a>
+</div>
+<div class="side-menu-item{% if active_menu_item == 2 %} side-menu-item-active{% endif %}">
+    <a href="{{ url_for('admin.doctors') }}">Doctors</a>
+</div>
+<div class="side-menu-item{% if active_menu_item == 3 %} side-menu-item-active{% endif %}">
+    <a href="{{ url_for('admin.patients') }}">Patients</a>
+</div>
+<div class="side-menu-item{% if active_menu_item == 4 %} side-menu-item-active{% endif %}">
+    <a href="{{ url_for('admin.appointments') }}">Appointments</a>
+</div>
+
+{%- endblock %}

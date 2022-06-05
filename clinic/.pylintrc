@@ -1,0 +1,53 @@
+[MASTER]
+
+ignore=
+ignore-paths=.*/migrations, .*/gunicorn.conf.py
+
+
+
+# List of plugins (as comma separated values of python modules names) to load,
+# usually to register additional checkers.
+load-plugins=pylint_flask, pylint_flask_sqlalchemy, pylint_sqlalchemy
+
+
+[BASIC]
+
+# Good variable names which should always be accepted, separated by a comma
+good-names=i
+
+
+[TYPECHECK]
+
+# List of module names for which member attributes should not be checked
+# (useful for modules/projects where namespaces are manipulated during runtime
+# and thus existing member attributes cannot be deduced by static analysis)
+ignored-modules=alembic.context
+
+# List of classes names for which member attributes should not be checked
+# (useful for classes with attributes dynamically set).
+ignored-classes=scoped_session
+
+
+[SIMILARITIES]
+
+# Minimum lines number of a similarity.
+# min-similarity-lines=10
+
+
+[DESIGN]
+
+# Maximum number of arguments for function / method
+max-args=9
+
+# Argument names that match this expression will be ignored. Default to name
+# with leading underscore
+ignored-argument-names=id
+
+# Maximum number of parents for a class (see R0901).
+max-parents=9
+
+# Maximum number of attributes for a class (see R0902).
+max-attributes=8
+
+# Minimum number of public methods for a class (see R0903).
+min-public-methods=0

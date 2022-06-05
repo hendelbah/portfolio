@@ -1,0 +1,32 @@
+{% set animated = True if doctor else False %}
+
+{%- extends 'admin_panel/base.html' %}
+
+{%- from 'macros.html' import paginated_table, render_filters, render_admin_controls %}
+
+{%- block header -%}
+List of users{% if doctor %} - Book appointment with doctor {{ doctor.full_name }}{% endif %}
+{%- endblock %}
+
+{%- block body %}
+
+{%- call render_filters(form, endpoints['item'])%}
+<div class="filters-field">
+    {{ form.search_phone.label() }}
+    {{ form.search_phone() }}
+</div>
+<div class="filters-field">
+    {{ form.search_name.label() }}
+    {{ form.search_name() }}
+</div>
+{%- endcall %}
+
+{%- set headers =  ('Phone number', 'Full name', 'Birthday') %}
+{%- call(item) paginated_table(data, headers) %}
+<td class="center-text">{{ item.phone_number }}</td>
+<td>{{ item.full_name }}</td>
+<td class="center-text">{{ item.birthday }}</td>
+{{ render_admin_controls(item, endpoints, 'full_name', 'patient', {'doctor':doctor.uuid or None}) }}
+{% endcall %}
+
+{% endblock %}

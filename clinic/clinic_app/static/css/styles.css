@@ -1,0 +1,412 @@
+html, body {
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0px;
+}
+
+html, body, body div, body form {
+  display: flex;
+}
+
+body, .page-body, .main-container, .pagination-body, .pagination-container {
+  flex: 1;
+}
+
+.flex-col { flex-flow: column; }
+
+a { text-decoration: none; }
+
+.controls a, .controls a:visited{ color: black; }
+
+.controls a:hover { color: grey; }
+
+.links a, .links a:visited{ color: blue; }
+
+.links a:hover { color: lightblue; }
+
+h1, h2 {
+  margin-block: 15px;
+  margin-left: 30px;
+}
+
+hr { min-width: 100%; }
+
+.page-header {
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #CDFF79;
+}
+
+.page-tail {
+  align-items: center;
+  min-height: 60px;
+}
+
+.page-tail hr {
+  min-width: 100%;
+  margin-top: 0;
+  height: 15px;
+  border: none;
+  box-shadow: 0 10px 10px -10px #333 inset;
+}
+
+.main-menu { font-size: 30px; }
+
+.main-menu-item:hover { background-color: #E2FFB2; }
+
+.main-menu-item a { padding: 20px; }
+
+#home-breadcrumb {
+  padding-inline: 40px;
+  background: transparent url("/static/media/home-button.png") 45% 50% padding-box no-repeat;
+  background-size: 50%;
+}
+
+.auth {
+  justify-content: flex-end;
+  align-items: center;
+  font-size:20px;
+}
+
+.profile-link:hover { color: blue; }
+
+.log-link {
+  border-radius: 20px;
+  border: 3px solid;
+  border-color: #668E21;
+  margin-inline: 15px;
+}
+
+.log-link a { padding: 8px 20px; }
+
+#login {
+  background-color: #76B900;
+  color: #EAFFC4;
+}
+
+#login:hover {
+  background-color: #619800;
+}
+
+#logout { background-color: #EDFF79; }
+
+#logout:hover {
+  background-color: #F6FFB9;
+}
+
+.side-menu {
+  min-width: 250px;
+  background-color: #ECFFCD;
+  font-size: 20px;
+  padding-right: 2px;
+}
+
+#side-menu-header {
+  background-color: #A6CB6C;
+  border-width: 3px;
+}
+
+.side-menu-item {
+  flex-flow: column;
+  align-items: stretch;
+  background-color: #D2ECA9;
+  border: 1px solid;
+  border-color: #668E21;
+  cursor: pointer;
+  text-align: center;
+}
+
+.side-menu-item a:hover { background-color: #F7FFEB; }
+
+.side-menu-item-active {
+  background-color: #F7FFEB;
+  border-right: none;
+}
+
+.side-menu-item a, .side-menu-item label { padding: 20px; }
+
+.booked-counter {
+  border-radius: 10px;
+  border: 2px solid #1AD400;
+  background-color: #ABFF7F;
+  padding: 1px 5px;
+  margin-right: 3px;
+}
+
+.unfilled-counter {
+  border-radius: 10px;
+  border: 2px solid #E28800;
+  background-color: #FFE87F;
+  padding: 1px 5px;
+  margin-right: 3px;
+}
+
+.flashes {
+  display: flex;
+  padding: 1px;
+  margin-bottom: 20px;
+}
+
+.flash {
+  margin: 1px;
+  padding: 5px;
+  padding-left: 30px;
+  border-radius: 5px;
+}
+
+.flash.error {
+  background-color: #FFEDE4;
+  color: #742200;
+}
+
+.flash.warning {
+  background-color: #FFF7D8;
+  color: #745D00;
+}
+
+.flash.success {
+  background-color: #E1FFD8;
+  color: #145800;
+}
+
+.login-form {
+  flex-flow: column;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.login-form div {
+  margin: 10px;
+  margin-bottom:5px;
+  justify-content: flex-end;
+}
+
+.login-form label { margin-right: 5px; }
+
+.info-block {
+  flex-flow: column;
+  padding-inline: 40px;
+  font-size: 20px;
+}
+
+.info-item {
+  flex-flow: column;
+  padding: 10px;
+}
+
+.common-form {
+  flex-flow: column;
+  padding: 10px;
+  width: max-content;
+  max-width: 80%;
+}
+
+.common-form > div { margin: 10px; }
+
+.common-form textarea {
+  width: 80%;
+  height: 100px;
+}
+
+.submit-in-end { justify-content: flex-end; }
+
+.validated-field { flex-flow: column; }
+
+.field-container { justify-content: space-between; }
+
+.field-container label { margin-right: 20px; }
+
+.invalid-container {
+  flex-flow: column;
+  align-items: flex-end;
+}
+
+.invalid-input {
+  background-color: #FFDCD2;
+}
+
+.invalid-feedback {
+  color: red;
+  display: flex;
+  font-size: 14px;
+}
+
+.profile-doctor {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.profile-doctor th, .profile-doctor td {
+  padding-bottom: 10px;
+  vertical-align: top;
+}
+
+.profile-doctor th {
+  white-space: nowrap;
+  text-align: right;
+  padding-right: 20px
+}
+
+.change-pass-form label { margin-right: 5px; }
+
+.pagination-tail {
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.change-page, #pages { padding: 5px 10px; }
+
+.change-page {
+  border: 1px solid black;
+}
+
+.doctors-container { flex-flow: row wrap; }
+
+.doctor-item {
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  max-width: 46%;
+}
+
+.doctor-item label {
+  padding: 5px;
+}
+
+.center-text { text-align: center; }
+
+.filters-block {
+  padding: 10px;
+  align-items: center;
+}
+
+.new-record {
+  border-radius: 20px;
+  border: 3px solid;
+  border-color: #668E21;
+  margin-inline: 20px;
+}
+
+.new-record a { padding: 8px 20px; }
+
+.filters {
+  align-items: center;
+  border: 1px solid;
+  padding-inline: 10px;
+  padding-block: 5px;
+}
+
+.filters-field {
+  flex-flow: column;
+  margin: 10px;
+}
+
+.records-table {
+  margin-block: 10px;
+  margin-inline: 30px;
+  border-collapse: collapse;
+}
+
+.records-table td, .records-table th {
+  padding: 5px;
+  border: 1px solid #222;
+}
+
+td.action { min-width: 100px; }
+
+td.action div { min-width: 100%; }
+
+td > .actions { flex-flow: column; }
+
+td > .actions > div {
+  padding-block: 2px;
+  justify-content: center;
+}
+
+td .action-link { margin-inline: 5px; }
+
+.action-link {
+  border-radius: 10px;
+  border: 1px solid;
+  padding-inline: 5%;
+  cursor: pointer;
+}
+
+.animated td.action {
+  animation: blink 3s;
+}
+
+@keyframes blink {
+  20%, 60%, 100% {
+    background-color: #FFFF00;
+  }
+  40%, 80% {
+    background-color: #fff;
+  }
+}
+
+.select-link {
+  border-color: #52C333;
+  background-color: #DCFFD7;
+}
+
+.select-link:hover { background-color: white; }
+
+
+.edit-link {
+  border-color: #C3B933;
+  background-color: #FFFCD7;
+}
+
+.edit-link:hover { background-color: white; }
+
+.del-link {
+  border-color: #8E3B21;
+  background-color: #FFE4DC;
+}
+
+.del-link:hover { background-color: white; }
+
+.tooltip {
+  max-width: 100px;
+}
+
+.tooltip div {
+  min-height: 18px;
+  position: relative;
+}
+
+.tooltip span {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.tooltip:hover span {
+  position: absolute;
+  background-color: white;
+  border: 1px solid;
+  width: 300px;
+  white-space: normal;
+  z-index: 2;
+  padding: 10px;
+  top: -10px;
+  left: -10px;
+}
+
+.income {
+  margin-block: 10px;
+  margin-inline: 30px;
+  padding: 5px;
+  border: 1px solid;
+}
+
+.income label { margin-inline: 5px; }

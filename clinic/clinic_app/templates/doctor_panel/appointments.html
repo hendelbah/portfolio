@@ -1,0 +1,64 @@
+{% set title = 'Appointments' %}
+
+
+{%- extends 'doctor_panel/base.html' %}
+
+
+{%- from 'macros.html' import paginated_table, render_filters %}
+
+
+{%- block header -%}
+Appointments of {{ current_user.doctor.full_name }}
+{%- endblock %}
+
+
+{%- block body -%}
+
+{%- call render_filters(form)%}
+<div class="filters-field">
+    {{ form.patient_name.label() }}
+    {{ form.patient_name() }}
+</div>
+<div class="filters-field">
+    {{ form.date.label() }}
+    {{ form.date() }}
+</div>
+{%- endcall %}
+
+{%- if active_menu_item == 3 %}
+<div class="income">
+    <label>Total income for filtered appointments:</label>
+    <label style="font-weight:bold">{{ income }}</label>
+</div>
+{%- endif %}
+
+{%- set action =  active_menu_item > 1 %}
+{%- set headers =  ('Conclusion', 'Prescription', 'Bill') if action else () %}
+
+{%- call(item) paginated_table(data, ('Patient', 'Date', 'Time') + headers, action=action) %}
+<td class="center-text">{{ item.patient.full_name }}</td>
+<td class="center-text">{{ item.date }}</td>
+<td class="center-text">{{ item.time }}</td>
+{%- if action %}
+<td class="tooltip">{% if item.conclusion %}
+    <div><span>{{ item.conclusion }}</span></div>
+    {% endif %}
+</td>
+<td class="tooltip">{% if item.prescription %}
+    <div><span>{{ item.prescription }}</span></div>
+    {% endif %}
+</td>
+<td class="center-text">{% if item.bill %}{{ item.bill }} UAH{% endif %}</td>
+<td class="action controls">
+    <div class="actions">
+        <div>
+            <a class="select-link action-link" href="{{ url_for('.appointment', uuid=item.uuid) }}">
+                {{ 'Fill up info' if active_menu_item == 2 else 'View' }}
+            </a>
+        </div>
+    </div>
+</td>
+{%- endif %}
+{%- endcall %}
+
+{%- endblock %}
