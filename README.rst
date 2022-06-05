@@ -10,6 +10,20 @@ Listed from new to old:
 - Cellular automaton: wildfire simulation
 - Fractals on Delphi
 
+Clinic
+-----------------
+Web app for managing appointments in a clinic. There is a web interface and REST API.
+
+This is a final project for EPAM Python courses. It is well documented
+and covered with tests
+
+It uses:
+
+- **Flask, Jinja, flasgger, SQLAlchemy, Marshmallow, WTForms**
+- **HTML, CSS, MySQL**
+- **REST API**
+- **unittest**
+
 Web Monaco report
 -----------------
 Web application for showing Monaco 2018 Racing statistics. There is a web interface and REST API.
