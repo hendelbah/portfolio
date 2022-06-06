@@ -4,6 +4,7 @@ There is some projects I have done and want to share
 
 Listed from new to old:
 
+- Clinic
 - Web Monaco report
 - Unique characters
 - Telebot: telegram chat bot
