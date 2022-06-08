@@ -3,8 +3,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/hendelbah/clinic/badge.svg?branch=main)](https://coveralls.io/github/hendelbah/clinic?branch=main)
 [![Build Status](https://app.travis-ci.com/hendelbah/clinic.svg?branch=main)](https://app.travis-ci.com/hendelbah/clinic)
 
-### Web application for managing appointments in a clinic
-### [*See the app in original repository*](https://github.com/hendelbah/clinic)
+Web application for managing appointments in a clinic.
+
+[***See the app in original repository***](https://github.com/hendelbah/clinic)
 
 ## With this app you can:
 

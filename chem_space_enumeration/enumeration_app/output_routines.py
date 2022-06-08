@@ -40,7 +40,7 @@ def save_images(images: list, directory: str):
         image.save(directory / f'molecules-{index:0>3}.png')
 
 
-def make_properties_table(smiles_list) -> pd.DataFrame:
+def create_properties_table(smiles_list) -> pd.DataFrame:
     """
     Calculate properties (logP, MolWeight) for molecules in smiles list and create
     DataFrame with this data.
@@ -58,9 +58,9 @@ def make_properties_table(smiles_list) -> pd.DataFrame:
     return df
 
 
-def save_to_excel(dataframe, path):
+def save_to_excel(dataframe, file_path):
     """
     Save dataframe to exel file.
     """
-    with pd.ExcelWriter(path, engine='openpyxl') as writer:
+    with pd.ExcelWriter(file_path, engine='openpyxl') as writer:
         dataframe.to_excel(writer)
