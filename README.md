@@ -95,7 +95,9 @@ It uses:
 - **pillow**
 
 ## Fractals
-![Beautiful Julia set](fractals-Delphi/fractal_1.png)
+<picture>
+ <img src="fractals-Delphi/fractal_1.png" alt="Beautiful Julia set" align="center">
+</picture>
 
 <picture>
  <img src="fractals-Delphi/fractal_1.gif" alt="Julia manifold" width="49.5%">
