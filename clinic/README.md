@@ -3,24 +3,24 @@
 [![Coverage Status](https://coveralls.io/repos/github/hendelbah/clinic/badge.svg?branch=main)](https://coveralls.io/github/hendelbah/clinic?branch=main)
 [![Build Status](https://app.travis-ci.com/hendelbah/clinic.svg?branch=main)](https://app.travis-ci.com/hendelbah/clinic)
 
-Web application for managing appointments in a clinic.
+### Web application for managing appointments in a clinic.
 
-[***See the app in original repository***](https://github.com/hendelbah/clinic)
+### [*See the app in original repository*](https://github.com/hendelbah/clinic)
 
 ## With this app you can:
 
-- ### Display a list of doctors that work in the clinic
-- ### Log in as an administrator or a doctor
-- ### Display your profile and change password
-- ### As an administrator:
-- #### Display a list of users
-- #### Display a list of doctors
-- #### Display a list of patients
-- #### Display a list of appointments and the total income from them
-- #### Change (add / edit / delete) the above data
-- ### As a doctor:
-- #### Display a list of booked, unfilled and archived appointments, related to current doctor's account
-- #### Fill in info for successful (yet unfilled) appointments
+- **Display a list of doctors that work in the clinic**
+- **Log in as an administrator or a doctor**
+- **Display your profile and change password**
+- **As an administrator:**
+  - **Display a list of users**
+  - **Display a list of doctors**
+  - **Display a list of patients**
+  - **Display a list of appointments and the total income from them**
+  - **Change (add / edit / delete) the above data**
+- **As a doctor:**
+  - **Display a list of booked, unfilled and archived appointments, related to current doctor's account**
+  - **Fill in info for successful (yet unfilled) appointments**
 
 
 ## How to build this project:
