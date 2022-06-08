@@ -1,6 +1,5 @@
-Fractals
-====
-.. image:: fractal_1.png
+# Fractals
+![Beautiful julia set](fractal_1.png)
 
 This is an application for visualizing fractal sets,namely Mandelbrot
 set and Julia set. It is written in Delphi using Embarcadero RAD studio.
@@ -14,19 +13,16 @@ I won't explain here in detail what Mandelbrot and Julia sets are and what is
 the math behind the calculations. If you're interested you can see it on wikipedia.
 I just want to mention that this is all about complex numbers, so the fractal image
 corresponds to the complex plain and every pixel refers to some complex number.
-
-
-How to use
-----
+## How to use
 The application draws the Mandelbrot set when you simply press the ``draw`` button.
 If you used some feature below an nothing happened press this button again.
-
-Basic usage
-^^^^
-.. image:: fractal_2.png
-  :width: 300
-.. image:: fractal_3.png
-  :width: 300
+### Basic usage
+<picture>
+ <img src="fractal_2.png" alt="Mandelbrot set" width="400">
+</picture>
+<picture>
+ <img src="fractal_3.png" alt="4-th power of polynomial" width="400">
+</picture>
 
 - You can specify number of max iterations that algorithm performs in the top left
   corner field. Bigger number makes the fractal more detailed but computation can
@@ -40,10 +36,8 @@ Basic usage
 - When zoomed, you can move the image with ``ctrl+drag``.
 - You can save current image in the app directory with ``Save image`` button
 
-Julia set drawing:
-^^^^
-.. image:: fractal_4.png
-  :width: 500
+### Julia set drawing:
+![Simple julia set](fractal_4.png)
 
 - Better you have set the droplist value (second GUI element from top row) to ``2``
 - There is particular section in GUI for it: 4 long ``edit`` fields, 2 buttons with
@@ -59,12 +53,14 @@ Julia set drawing:
 - The resulting Julia set is something similar to surroundings of a point that you
   picked on the Mandelbrot set, so i recommend you to pick points near the black regions.
 
-GIF generation - the coolest thing:
-^^^^
-.. image:: fractal_1.gif
-  :width: 500
-.. image:: fractal_2.gif
-  :width: 500
+### GIF generation - the coolest thing:
+
+<picture>
+ <img src="fractal_1.gif" alt="Julia manifold" width="400">
+</picture>
+<picture>
+ <img src="fractal_2.gif" alt="3-d power Julia manifold" width="400">
+</picture>
 
 - It works properly only if you have set the droplist value to ``2``, also make sure
   zoom is reset and iterations number isn't to high (values 100-200 is the best)
@@ -72,5 +68,5 @@ GIF generation - the coolest thing:
 - If frames begin to change smoothly computation is finished. In that case you can save
   this thing as GIF with ``Save GIF`` button
 
-I hope you'll enjoy!
-""""""""""""""""""""
+#### I hope you'll enjoy!
+
