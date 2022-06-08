@@ -79,6 +79,8 @@ It uses:
 ## Cellular automaton
 <picture>
  <img src="cellular_automaton/wildfire.gif" alt="Basic wildfire" width="49.5%">
+</picture>
+<picture>
  <img src="cellular_automaton/wildfire_west_wind.gif" alt="Wildfire under west wind" width="49.5%">
 </picture>
 
@@ -102,6 +104,8 @@ It uses:
 
 <picture>
  <img src="fractals-Delphi/fractal_1.gif" alt="Julia manifold" width="49.5%">
+</picture>
+<picture>
  <img src="fractals-Delphi/fractal_2.gif" alt="3-d power Julia manifold" width="49.5%">
 </picture>
 
