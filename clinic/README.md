@@ -5,7 +5,7 @@
 
 ### Web application for managing appointments in a clinic.
 
-### [*See the app in original repository*](https://github.com/hendelbah/clinic)
+### [*See the app in the original repository*](https://github.com/hendelbah/clinic)
 
 ## With this app you can:
 
