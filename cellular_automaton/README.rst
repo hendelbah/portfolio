@@ -4,16 +4,15 @@ This is an application for wildfire simulation based on cellular automata
 
 Features
 --------
-- Application generates a GIF file representing fire spreading in the forest
-
+- Application generates a GIF file representing fire spreading in the forest:
+.. image:: wildfire.gif
+  :width: 300
+.. image:: wildfire_west_wind.gif
+  :width: 300
 - GUI
-
 - You can specify some parameters of fire spread simulation.
-
 - You can set the wind, so fire will be more likely to spread in some direction
-
 - You can choose a directory to save that gif
-
 - Also you can open a picture, like a real forest photo from satellite,
   that will be a pattern for initial grid generation. More blueish pixels
   will turn into "river" cells which don't burn
