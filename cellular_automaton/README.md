@@ -1,27 +1,24 @@
-Wildfire simulation
-===================
+# Wildfire simulation
 This is an application for wildfire simulation based on cellular automata
+## Features
+<picture>
+ <img src="wildfire.gif" alt="Basic wildfire" width="49.5%">
+</picture>
+<picture>
+ <img src="wildfire_west_wind.gif" alt="Wildfire under west wind" width="49.5%">
+</picture>
 
-Features
---------
 - Application generates a GIF file representing fire spreading in the forest:
-.. image:: wildfire.gif
-  :width: 300
-.. image:: wildfire_west_wind.gif
-  :width: 300
 - GUI
 - You can specify some parameters of fire spread simulation.
 - You can set the wind, so fire will be more likely to spread in some direction
 - You can choose a directory to save that gif
-- Also you can open a picture, like a real forest photo from satellite,
+- Also, you can open a picture, like a real forest photo from satellite,
   that will be a pattern for initial grid generation. More blueish pixels
   will turn into "river" cells which don't burn
-
-Concept
--------
+## Concept
 The model is such, that there is a grid of cells that changes every frame.
 Each cell can have 3 different states:
-
 - ``dirt``
 - ``tree``
 - ``burning``
@@ -29,15 +26,13 @@ Initial grid consists of ``dirt`` cells with randomly generated ``trees``
 and one initial ``fire``
 
 'burning' cell has 5 substates which represent its progress from ignition to going out.
-Each frame any ```burning`` cell can ignite adjacent ``tree`` with a certain chance,
+Each frame any ``burning`` cell can ignite adjacent ``tree`` with a certain chance,
 that differs for substates. Also, each frame substate changes and after reaching
 last value it goes out and turns into dirt.
 
 Program is optimized in such a way that it process only burning cells each frame,
 searches around these cells for any ``tree`` and also excludes non-``tree`` from this search
-
-GUI
----
+## GUI
 There is a TkInter GUI, that consists of:
 
 - ``probability`` field:
@@ -70,4 +65,4 @@ There is a TkInter GUI, that consists of:
     When button is pressed, initial grid will be generated, and scaled
     image of it will appear sideways. Click somewhere on this image to
     put initial fire there, then program will generate the GIF and save it.
-    Note that GIF generation can take some time/
+    Note that GIF generation can take some time.
