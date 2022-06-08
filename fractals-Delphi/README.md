@@ -1,6 +1,6 @@
 # Fractals
 <picture>
- <img src="fractal_1.png" alt="Beautiful julia set" width="100%">
+ <img src="fractal_1.png" alt="Beautiful julia set">
 </picture>
 
 This is an application for visualizing fractal sets,namely Mandelbrot
@@ -40,7 +40,7 @@ If you used some feature below an nothing happened press this button again.
 
 ### Julia set drawing:
 <picture>
- <img src="fractal_4.png" alt="Simple julia set" width="100%">
+ <img src="fractal_4.png" alt="Simple julia set">
 </picture>
 
 - Better you have set the droplist value (second GUI element from top row) to ``2``
