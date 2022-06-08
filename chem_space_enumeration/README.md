@@ -18,10 +18,11 @@ compounds with customizable restrictions. Also, the opensource chemoinformatics 
 - Enumerate spirocycles, specifying ring size, number and set of heteroatoms, for each ring.
 - Generate SMILES strings for enumerated molecules
 - Create pictures of multiple 2D structures for all generated SMILES:
+
   ![Structures of some generated molecules](enumeration_app/images/molecules-000.png)
 - Compute logP and mol weight, and create excel table from that data:
-  ![Table of properties](table.png)
 
+  ![Table of properties](table.png)
 ## Modules
 - `enumeration.py` contains functions for enumeration and SMILES generation of spirocyclic compounds 
 with specified set and amount of heteroatoms and specified ring sizes.
