@@ -47,7 +47,7 @@ It uses:
 ## Unique characters
 A small application that contains tools for finding unique characters in given string.
 
-This is a project for FoxmindEd Python courses, for worring with packaging and CLI.
+This is a project for FoxmindEd Python courses, for working with packaging and CLI.
 It is well documented and covered with tests(pytest).
 
 It is performed as a python package and has importable utilities and also CLI
@@ -94,4 +94,4 @@ I did this project for fun 2 years ago when i didn't know python, using
 Delphi I had been taught in school.
 
 It was made with Embarcadero RAD studio IDE, and it uses external GifImage
-library for saving GIF (it's quite large, so there is a lot of pascal content in repo)
+library for saving GIF (it's quite large, so there is a lot of pascal content in repo).
