@@ -1,6 +1,6 @@
 # Fractals
 <picture>
- <img src="fractal_1.png" alt="Beautiful julia set">
+ <img src="fractal_1.png" alt="Beautiful Julia set">
 </picture>
 
 This is an application for visualizing fractal sets,namely Mandelbrot

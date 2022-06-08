@@ -9,16 +9,16 @@ From recent to old:
 - **Telebot: telegram chat bot**
 - **Cellular automaton: wildfire simulation**
 - **Fractals on Delphi**
-
+- 
 ## Chemical space enumeration
+![Structures of some generated molecules](chem_space_enumeration/enumeration_app/images/molecules-000.png)
 An application for combinatorial generation and processing of spirocyclic molecular structures.
 
 This app is a part of my master's graduation project.
 
 It uses:
-- **pandas**
 - **RDKit** - an opensource chemoinformatics library
-
+- **pandas**
 
 ## Clinic
 A web app for managing appointments in a clinic. There is a web interface and REST API.
@@ -74,6 +74,13 @@ It uses:
 - **OOP**
 
 ## Cellular automaton
+<picture>
+ <img src="cellular_automaton/wildfire.gif" alt="Basic wildfire" width="49.5%">
+</picture>
+<picture>
+ <img src="cellular_automaton/wildfire_west_wind.gif" alt="Wildfire under west wind" width="49.5%">
+</picture>
+
 Application that simulates wildfire using cellular automata model. As the result
 is creates GIF file that shows wildfire dynamics.
 
@@ -88,9 +95,18 @@ It uses:
 - **pillow**
 
 ## Fractals
-Application with GUI that visualizes Mandelbrot and Julia sets.
+![Beautiful Julia set](fractals-Delphi/fractal_1.png)
 
-I did this project for fun 2 years ago when i didn't know python, using
+<picture>
+ <img src="fractals-Delphi/fractal_1.gif" alt="Julia manifold" width="49.5%">
+</picture>
+<picture>
+ <img src="fractals-Delphi/fractal_2.gif" alt="3-d power Julia manifold" width="49.5%">
+</picture>
+
+Application with GUI that visualizes Mandelbrot and Julia sets and can save pictures and GIFs.
+
+I did this project for fun 2 years ago when I didn't know python, using
 Delphi I had been taught in school.
 
 It was made with Embarcadero RAD studio IDE, and it uses external GifImage
