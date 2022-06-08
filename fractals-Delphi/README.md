@@ -1,5 +1,7 @@
 # Fractals
-![Beautiful julia set](fractal_1.png)
+<picture>
+ <img src="fractal_1.png" alt="Beautiful julia set" width="100%">
+</picture>
 
 This is an application for visualizing fractal sets,namely Mandelbrot
 set and Julia set. It is written in Delphi using Embarcadero RAD studio.
@@ -18,10 +20,10 @@ The application draws the Mandelbrot set when you simply press the ``draw`` butt
 If you used some feature below an nothing happened press this button again.
 ### Basic usage
 <picture>
- <img src="fractal_2.png" alt="Mandelbrot set" width="400">
+ <img src="fractal_2.png" alt="Mandelbrot set" width="49%">
 </picture>
 <picture>
- <img src="fractal_3.png" alt="4-th power of polynomial" width="400">
+ <img src="fractal_3.png" alt="4-th power of polynomial" width="49%">
 </picture>
 
 - You can specify number of max iterations that algorithm performs in the top left
@@ -37,7 +39,9 @@ If you used some feature below an nothing happened press this button again.
 - You can save current image in the app directory with ``Save image`` button
 
 ### Julia set drawing:
-![Simple julia set](fractal_4.png)
+<picture>
+ <img src="fractal_4.png" alt="Simple julia set" width="100%">
+</picture>
 
 - Better you have set the droplist value (second GUI element from top row) to ``2``
 - There is particular section in GUI for it: 4 long ``edit`` fields, 2 buttons with
@@ -56,10 +60,10 @@ If you used some feature below an nothing happened press this button again.
 ### GIF generation - the coolest thing:
 
 <picture>
- <img src="fractal_1.gif" alt="Julia manifold" width="400">
+ <img src="fractal_1.gif" alt="Julia manifold" width="49%">
 </picture>
 <picture>
- <img src="fractal_2.gif" alt="3-d power Julia manifold" width="400">
+ <img src="fractal_2.gif" alt="3-d power Julia manifold" width="49%">
 </picture>
 
 - It works properly only if you have set the droplist value to ``2``, also make sure
