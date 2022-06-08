@@ -8,7 +8,6 @@
 ### [*See the app in the original repository*](https://github.com/hendelbah/clinic)
 
 ## With this app you can:
-
 - **Display a list of doctors that work in the clinic**
 - **Log in as an administrator or a doctor**
 - **Display your profile and change password**
@@ -21,79 +20,56 @@
 - **As a doctor:**
   - **Display a list of booked, unfilled and archived appointments, related to current doctor's account**
   - **Fill in info for successful (yet unfilled) appointments**
-
-
 ## How to build this project:
-
 - #### Navigate to the project root folder
-
 - #### Optionally set up and activate the virtual environment:
-
-```
-virtualenv venv
-source venv/bin/activate
-```
-
+    ```
+    virtualenv venv
+    source venv/bin/activate
+    ```
 - #### Install the requirements:
-
-```
-pip install -r requirements.txt
-```
-
+    ```
+    pip install -r requirements.txt
+    ```
 - #### Configure MySQL database
-
-- #### Set the following environment variables:
-
-- Flask app:
-```
-FLASK_APP=clinic_app
-```
-
-- Database:
-```
-MYSQL_USER = <your_mysql_user>
-MYSQL_PASSWORD = <your_mysql_user_password>
-MYSQL_SERVER = <your_mysql_server>
-MYSQL_DATABASE = <your_mysql_database_name>
-```
-
-- Optional:
-```
-FLASK_SECRET_KEY = <your_secure_key>
-FLASK_CONFIG = [production|development]
-```
-*You can set these in .env file in the application root directory as the project uses dotenv module to load 
+- #### Set the following environment variables<sup>*</sup>:
+  - Flask app:
+    ```
+    FLASK_APP=clinic_app
+    ```
+  - Database:
+    ```
+    MYSQL_USER = <your_mysql_user>
+    MYSQL_PASSWORD = <your_mysql_user_password>
+    MYSQL_SERVER = <your_mysql_server>
+    MYSQL_DATABASE = <your_mysql_database_name>
+    ```
+  - Optional:
+    ```
+    FLASK_SECRET_KEY = <your_secure_key>
+    FLASK_CONFIG = [production|development]
+    ```
+*<sup>\*</sup>You can set these in .env file in the application root directory as the project uses dotenv module to load 
 environment variables(except `FLASK_APP` of course)*
-
 - #### Run migrations to create database infrastructure:
-
-```
-flask db upgrade
-```
-
+    ```
+    flask db upgrade
+    ```
 - #### Optionally populate the database with sample data
-
-```
-python -m clinic_app.service.populate
-```
-
+    ```
+    python -m clinic_app.service.populate
+    ```
 - #### Run the project locally:
-
-```
-python -m flask run
-```
-
+    ```
+    python -m flask run
+    ```
 - #### Also, you can run project on gunicorn:
-
-```
-gunicorn clinic_app:app
-```
+    ```
+    gunicorn clinic_app:app
+    ```
 You can set gunicorn options in `gunicorn.conf.py` file in app's root directory.
-
 ## Now you should be able to access the web service and web application:
-
 ### Web Service (API):
-
 ```
 localhost:5000/api/users?search_email=<str>
 localhost:5000/api/users/<uuid>
@@ -105,21 +81,15 @@ localhost:5000/api/appointments?doctor_uuid=<str>&patient_uuid=<str>&doctor_name
 localhost:5000/api/appointments/<uuid>
 localhost:5000/api/appointments/stats?<same filters as for appointments>
 ```
-
 Also, all collection resources accept `page` and `per_page` GET parameters
-
 #### Web Service endpoints are documented with Flasgger at:
 ```
 localhost:5000/apidocs/
 ```
-
 ### Web Application:
-
 #### After population, to log in you can use following email - password:
-
 - ##### `root` - `root1234`: admin user
 - ##### `doctor_001@spam.ua` - `doctor1234`: admin and doctor user
-
 #### Routes:
 ```
 localhost:5000/
