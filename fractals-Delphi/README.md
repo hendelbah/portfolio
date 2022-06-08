@@ -1,4 +1,5 @@
 # Fractals
+
 <picture>
  <img src="fractal_1.png" alt="Beautiful Julia set">
 </picture>
@@ -15,10 +16,14 @@ I won't explain here in detail what Mandelbrot and Julia sets are and what is
 the math behind the calculations. If you're interested you can see it on wikipedia.
 I just want to mention that this is all about complex numbers, so the fractal image
 corresponds to the complex plain and every pixel refers to some complex number.
+
 ## How to use
+
 The application draws the Mandelbrot set when you simply press the ``draw`` button.
 If you used some feature below an nothing happened press this button again.
+
 ### Basic usage
+
 <picture>
  <img src="fractal_2.png" alt="Mandelbrot set" width="49.5%">
 </picture>
@@ -39,6 +44,7 @@ If you used some feature below an nothing happened press this button again.
 - You can save current image in the app directory with ``Save image`` button
 
 ### Julia set drawing:
+
 <picture>
  <img src="fractal_4.png" alt="Simple julia set">
 </picture>
