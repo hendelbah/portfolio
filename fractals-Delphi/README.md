@@ -20,10 +20,10 @@ The application draws the Mandelbrot set when you simply press the ``draw`` butt
 If you used some feature below an nothing happened press this button again.
 ### Basic usage
 <picture>
- <img src="fractal_2.png" alt="Mandelbrot set" width="49%">
+ <img src="fractal_2.png" alt="Mandelbrot set" width="49.5%">
 </picture>
 <picture>
- <img src="fractal_3.png" alt="4-th power of polynomial" width="49%">
+ <img src="fractal_3.png" alt="4-th power of polynomial" width="49.5%">
 </picture>
 
 - You can specify number of max iterations that algorithm performs in the top left
@@ -60,10 +60,10 @@ If you used some feature below an nothing happened press this button again.
 ### GIF generation - the coolest thing:
 
 <picture>
- <img src="fractal_1.gif" alt="Julia manifold" width="49%">
+ <img src="fractal_1.gif" alt="Julia manifold" width="49.5%">
 </picture>
 <picture>
- <img src="fractal_2.gif" alt="3-d power Julia manifold" width="49%">
+ <img src="fractal_2.gif" alt="3-d power Julia manifold" width="49.5%">
 </picture>
 
 - It works properly only if you have set the droplist value to ``2``, also make sure
