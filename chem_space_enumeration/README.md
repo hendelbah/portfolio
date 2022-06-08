@@ -16,10 +16,10 @@ images of generated molecules.
 
 The app uses opensource chemoinformatics library **RDKit** for processing enumerated structures.
 ## Modules
-- `enumeration` contains functions for enumeration and SMILES generation of spirocyclic compounds 
+- `enumeration.py` contains functions for enumeration and SMILES generation of spirocyclic compounds 
 with specified set and amount of heteroatoms and specified ring sizes.
-- `output_routines` contains functions, which from SMILES can generate PNG images of 2D structures,
+- `output_routines.py` contains functions, which from SMILES can generate PNG images of 2D structures,
 calculate properties(logP, MolWeight) and create excel table with these properties.
-- `run` contains script with example of usage, that generates spirocycles with each ring containing
+- `run.py` contains script with example of usage, that generates spirocycles with each ring containing
 up to 5 members and up to 2 atoms of N, O and S. Then it creates pictures of all molecules with 5x5 
 grid of structures on each, and excel table with properties of these molecules
