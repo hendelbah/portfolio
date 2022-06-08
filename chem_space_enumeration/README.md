@@ -6,7 +6,7 @@ It is a part of my master's graduation project.
 The comprehensive enumeration and generation of all the theoretically possible chemical compounds, 
 the so-called *chemical space* is a problem in chemoinformatics and chemistry, that has attracted 
 the interest of scientists for a number of years. Assessing the chemical space has shown that it 
-contains about 10^200 compounds and that makes impossible the generation of all the theoretically 
+contains about 10<sup>200</sup> compounds and that makes impossible the generation of all the theoretically 
 possible structures. Therefore, the most practical way is to restrict researched area and deal only 
 with practically accessible compounds from particular class, exploring small part of chemical space.
 ## Features

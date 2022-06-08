@@ -43,7 +43,7 @@ Basic usage
 Julia set drawing:
 ^^^^
 .. image:: fractal_4.png
-  :width: 400
+  :width: 500
 
 - Better you have set the droplist value (second GUI element from top row) to ``2``
 - There is particular section in GUI for it: 4 long ``edit`` fields, 2 buttons with
@@ -61,7 +61,10 @@ Julia set drawing:
 
 GIF generation - the coolest thing:
 ^^^^
-.. image:: fractal_5.gif
+.. image:: fractal_1.gif
+  :width: 500
+.. image:: fractal_2.gif
+  :width: 500
 
 - It works properly only if you have set the droplist value to ``2``, also make sure
   zoom is reset and iterations number isn't to high (values 100-200 is the best)
