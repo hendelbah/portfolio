@@ -60,7 +60,8 @@ def generate_spiro_cycles_smiles(seq_list1: list, seq_list2: list = None) -> lis
     """
     Create spirocycles, combining atom sequences from 2 lists with and using
     `create_spiro_mol` function, then enumerate stereo isomers and generate
-    SMILES strings for them.\n
+    SMILES strings for them. Different sequence lists allow to control atoms in
+    separate rings of spirocycle, though second list is optional.\n
     :return: list of SMILES strings
     """
     seq_list2 = seq_list1 if seq_list2 is None else seq_list2
