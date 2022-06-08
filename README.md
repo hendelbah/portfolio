@@ -77,8 +77,10 @@ It uses:
 - **OOP**
 
 ## Cellular automaton
-<img src="cellular_automaton/wildfire.gif" alt="Basic wildfire" width="49.5%">
-<img src="cellular_automaton/wildfire_west_wind.gif" alt="Wildfire under west wind" width="49.5%">
+<picture>
+ <img src="cellular_automaton/wildfire.gif" alt="Basic wildfire" width="49.5%">
+ <img src="cellular_automaton/wildfire_west_wind.gif" alt="Wildfire under west wind" width="49.5%">
+</picture>
 
 Application that simulates wildfire using cellular automata model. As the result
 is creates GIF file that shows wildfire dynamics.
@@ -95,10 +97,14 @@ It uses:
 
 ## Fractals
 <p align="center">
-  <img src="fractals-Delphi/fractal_1.png" alt="Beautiful Julia set" align="center">
+ <img src="fractals-Delphi/fractal_1.png" alt="Beautiful Julia set" align="center">
 </p>
-<img src="fractals-Delphi/fractal_1.gif" alt="Julia manifold" width="49.5%">
-<img src="fractals-Delphi/fractal_2.gif" alt="3-d power Julia manifold" width="49.5%">
+
+<picture>
+ <img src="fractals-Delphi/fractal_1.gif" alt="Julia manifold" width="49.5%">
+ <img src="fractals-Delphi/fractal_2.gif" alt="3-d power Julia manifold" width="49.5%">
+</picture>
+
 
 Application with GUI that visualizes Mandelbrot and Julia sets and can save pictures and GIFs.
 
