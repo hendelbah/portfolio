@@ -1,9 +1,11 @@
 import tkinter as tk
-from tkinter import filedialog
-import numpy as np
-import imageio
-from PIL import ImageTk, Image
 from pathlib import Path
+from tkinter import filedialog
+
+import imageio
+import numpy as np
+from PIL import ImageTk, Image
+
 from wildfire.forest import Forest
 
 
@@ -21,7 +23,7 @@ class Application(tk.Frame):
         self.wind_power = 0
         self.input_img_path = Path()
         self.output_dir = Path()
-        self.generated_gif_count = 0
+        self.generated_gif_count = 1
         self.forest = None
         self.canvas = None
         self.can_image = None
@@ -134,7 +136,8 @@ class Application(tk.Frame):
 
     def calculate_gif(self):
         picture_array = np.zeros((self.time, (self.forest.height - 2) * self.forest.picture_scale,
-                                  (self.forest.width - 2) * self.forest.picture_scale, 3), dtype=np.uint8)
+                                  (self.forest.width - 2) * self.forest.picture_scale, 3),
+                                 dtype=np.uint8)
         picture_array[0] = self.forest.picture
         for frame in range(1, self.time):
             self.forest.evolve_to_next_frame(self.flame_powers, self.wind_course, self.wind_power)
@@ -178,7 +181,8 @@ class Application(tk.Frame):
         if not image_proceeded:
             self.forest = Forest.random(self.terrain_size, self.spawn_forest_prob, self.scale)
         self.can_image = ImageTk.PhotoImage(Image.fromarray(self.forest.picture, mode='RGB'))
-        self.canvas = tk.Canvas(self.master, width=self.can_image.width(), height=self.can_image.height())
+        self.canvas = tk.Canvas(self.master, width=self.can_image.width(),
+                                height=self.can_image.height())
         self.canvas.create_image(0, 0, anchor=tk.NW, image=self.can_image)
         self.canvas.pack(side='left')
         self.canvas.bind("<Button-1>", self.simulate_wildfire)
