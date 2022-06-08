@@ -11,10 +11,17 @@ possible structures. Therefore, the most practical way is to restrict researched
 with practically accessible compounds from particular class, exploring small part of chemical space.
 ## Features
 This application allows one to enumerate small part of chemical space, namely spirocyclic 
-compounds with customizable restrictions and to compute some properties, SMILES strings and 2D structure 
-images of generated molecules.
+compounds with customizable restrictions. Also, the opensource chemoinformatics library
+**RDKit** is used for processing enumerated structures.
 
-The app uses opensource chemoinformatics library **RDKit** for processing enumerated structures.
+**With this app you can:**
+- Enumerate spirocycles, specifying ring size, number and set of heteroatoms, for each ring.
+- Generate SMILES strings for enumerated molecules
+- Create pictures of multiple 2D structures for all generated SMILES:
+  ![Structures of some generated molecules](enumeration_app/images/molecules-000.png)
+- Compute logP and mol weight, and create excel table from that data:
+  ![Table of properties](table.png)
+
 ## Modules
 - `enumeration.py` contains functions for enumeration and SMILES generation of spirocyclic compounds 
 with specified set and amount of heteroatoms and specified ring sizes.

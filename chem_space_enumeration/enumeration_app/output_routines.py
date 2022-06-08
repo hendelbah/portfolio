@@ -40,11 +40,12 @@ def save_images(images: list, directory: str):
         image.save(directory / f'molecules-{index:0>3}.png')
 
 
-def create_properties_table(smiles_list) -> pd.DataFrame:
+def create_properties_table(smiles_list, ring_sizes) -> pd.DataFrame:
     """
     Calculate properties (logP, MolWeight) for molecules in smiles list and create
     DataFrame with this data.
     :param smiles_list: molecular SMILES list
+    :param ring_sizes: list of ring size pairs for each mol
     :return:
     """
     df = pd.DataFrame(index=range(1, len(smiles_list) + 1),
@@ -53,6 +54,7 @@ def create_properties_table(smiles_list) -> pd.DataFrame:
     for i, smiles in enumerate(smiles_list, 1):
         mol = Chem.MolFromSmiles(smiles)
         df['SMILES'][i] = smiles
+        df['cycles size'][i] = f'{ring_sizes[i - 1][0]}/{ring_sizes[i - 1][1]}'
         df['logP'][i] = Descriptors.MolLogP(mol)
         df['Mr'][i] = Descriptors.ExactMolWt(mol)
     return df

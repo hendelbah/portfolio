@@ -56,25 +56,28 @@ def generate_atom_sequences(max_len: int, max_hetero: int,
     return sequences
 
 
-def generate_spiro_cycles_smiles(seq_list1: list, seq_list2: list = None) -> list[str]:
+def generate_spiro_cycles_smiles(seq_list1: list, seq_list2: list = None):
     """
     Create spirocycles, combining atom sequences from 2 lists with and using
     `create_spiro_mol` function, then enumerate stereo isomers and generate
     SMILES strings for them. Different sequence lists allow to control atoms in
     separate rings of spirocycle, though second list is optional.\n
-    :return: list of SMILES strings
+    :return: list of SMILES strings, list of ring sizes for each mol
     """
     seq_list2 = seq_list1 if seq_list2 is None else seq_list2
     spiro_cycles_smiles = []
+    rings_info = []
 
     for idx_a, seq1 in enumerate(seq_list1):
         for idx_b, seq2 in enumerate(seq_list2):
             terminal_atoms = (seq1[0], seq1[-1], seq2[0], seq2[-1])
             if (seq_list1 is seq_list2 and idx_a < idx_b) or 6 not in terminal_atoms:
                 continue
+            rings = sorted([len(seq1) + 1, len(seq2) + 1])
             mol = create_spiro_mol(seq1, seq2)
             Chem.FindMolChiralCenters(mol, includeUnassigned=True)
             for isomer in EnumerateStereoisomers(mol):
                 smiles = Chem.MolToSmiles(isomer)
                 spiro_cycles_smiles.append(smiles)
-    return spiro_cycles_smiles
+                rings_info.append(rings)
+    return spiro_cycles_smiles, rings_info
