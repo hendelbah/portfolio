@@ -66,8 +66,8 @@ It is performed as a python package and has importable utilities and also CLI
 
 It uses:
 
-- **collections**
-- **argparse**
+- **collections, argparse**
+- **distutils**
 - **pytest**
 
 ## [Telebot](https://github.com/hendelbah/portfolio/tree/master/telebot)
