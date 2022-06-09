@@ -127,5 +127,5 @@ that as pictures and GIFs.
 I did this project for fun 2 years ago when I didn't know python, using
 Delphi, that I had learned in school.
 
-It is made with Embarcadero RAD studio IDE, and it uses external GifImage
+The app is made with Embarcadero RAD studio IDE, and it uses external GifImage
 library for saving GIF (it's quite large, so there is a lot of pascal content in repo).
