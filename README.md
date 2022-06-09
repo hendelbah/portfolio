@@ -75,8 +75,8 @@ It uses:
 **This and the next projects I had made before I decided to become a
 professional programmer, they are a bit messy.**
 
-The telegram bot for managing certain common situations in chat of
-employees of chemical factory I used to work at.
+The telegram bot for managing certain common situations in a chat of
+employees of Enamine Ltd.
 
 I had made it just out of interest, but unfortunately it didn't find any real
 life application.
