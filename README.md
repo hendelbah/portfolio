@@ -38,7 +38,7 @@ It uses:
 
 - **Flask, Jinja, SQLAlchemy, Marshmallow, WTForms, flasgger**
 - **HTML, CSS, MySQL, JSON**
-- **REST API, OpenAPI**
+- **REST API, OpenAPI, OOP**
 - **unittest**
 
 ## [Web Monaco report](https://github.com/hendelbah/portfolio/tree/master/web_monaco_report)
@@ -52,7 +52,7 @@ It uses:
 
 - **Flask, Jinja, peewee, flasgger**
 - **HTML, CSS, PostgreSQL, JSON, XML**
-- **REST API, OpenAPI**
+- **REST API, OpenAPI, OOP**
 - **pytest**
 
 ## [Unique characters](https://github.com/hendelbah/portfolio/tree/master/unique_characters_package)
