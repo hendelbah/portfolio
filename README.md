@@ -12,7 +12,7 @@ From recent to old:
 - **Cellular automaton: wildfire simulation**
 - **Fractals on Delphi**
 
-## Chemical space enumeration
+## [Chemical space enumeration](https://github.com/hendelbah/portfolio/tree/master/chem_space_enumeration)
 
 <p align="center">
   <img src="chem_space_enumeration/enumeration_app/images/molecules-000.png" alt="Structures of some generated molecules">
@@ -27,7 +27,7 @@ It uses:
 - **RDKit** - an opensource chemoinformatics library
 - **pandas**
 
-## Clinic
+## [Clinic](https://github.com/hendelbah/clinic)
 
 A web app for managing appointments in a clinic. There is a web interface and REST API.
 
@@ -41,7 +41,7 @@ It uses:
 - **REST API**
 - **unittest**
 
-## Web Monaco report
+## [Web Monaco report](https://github.com/hendelbah/portfolio/tree/master/web_monaco_report)
 
 A web application for showing Monaco 2018 Racing statistics. There is a web interface and REST API.
 
@@ -55,7 +55,7 @@ It uses:
 - **REST API**
 - **pytest**
 
-## Unique characters
+## [Unique characters](https://github.com/hendelbah/portfolio/tree/master/unique_characters_package)
 
 A small application that contains tools for finding unique characters in given string.
 
@@ -70,7 +70,7 @@ It uses:
 - **argparse**
 - **pytest**
 
-## Telebot
+## [Telebot](https://github.com/hendelbah/portfolio/tree/master/telebot)
 
 **This and the next projects I had made before I decided to become a
 professional programmer, they are a bit messy.**
@@ -87,7 +87,7 @@ It uses:
 - **SQL: Sqlite3**
 - **OOP**
 
-## Cellular automaton
+## [Cellular automaton: Wildfire simulation](https://github.com/hendelbah/portfolio/tree/master/cellular_automaton)
 
 <picture>
  <img src="cellular_automaton/wildfire.gif" alt="Basic wildfire" width="49.5%">
@@ -110,7 +110,7 @@ It uses:
 - **OOP**
 - **pillow**
 
-## Fractals
+## [Fractals](https://github.com/hendelbah/portfolio/tree/master/fractals-Delphi)
 
 <p align="center">
  <img src="fractals-Delphi/fractal_1.png" alt="Beautiful Julia set" align="center">
