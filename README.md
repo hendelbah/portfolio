@@ -99,7 +99,7 @@ It uses:
 An application that simulates wildfire using cellular automata model. In the result
 it creates a GIF file that illustrates wildfire dynamics.
 
-This was a project for my lab work at the university(indeed, we had some
+This was a project for my lab work in the university(indeed, we had some
 programing subjects when studied chemistry).
 
 It is performed in OOP style and has GUI.
