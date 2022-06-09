@@ -96,7 +96,7 @@ It uses:
  <img src="cellular_automaton/wildfire_west_wind.gif" alt="Wildfire under west wind" width="49.5%">
 </picture>
 
-Application that simulates wildfire using cellular automata model. In the result
+An application that simulates wildfire using cellular automata model. In the result
 it creates a GIF file that illustrates wildfire dynamics.
 
 This was a project for my lab work at the university(indeed, we had some
@@ -121,7 +121,7 @@ It uses:
  <img src="fractals-Delphi/fractal_2.gif" alt="3-d power Julia manifold" width="49.5%">
 </picture>
 
-Application with GUI that visualizes Mandelbrot and Julia sets and can save
+A Windows desktop application with GUI that visualizes Mandelbrot and Julia sets and can save
 that as pictures and GIFs.
 
 I did this project for fun 2 years ago when I didn't know python, using
