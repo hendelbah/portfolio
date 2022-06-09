@@ -99,16 +99,15 @@ It uses:
 Application that simulates wildfire using cellular automata model. As the result
 is creates GIF file that shows wildfire dynamics.
 
-This was a project for my lab work in university(actually we had some
+This was a project for my lab work in university(indeed, we had some
 programing subjects when studied chemistry).
 
 It is performed in OOP style and has GUI.
 
 It uses:
 
-- **TKInter**
+- **TKInter, pillow, numpy**
 - **OOP**
-- **pillow**
 
 ## [Fractals](https://github.com/hendelbah/portfolio/tree/master/fractals-Delphi)
 

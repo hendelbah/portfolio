@@ -1,6 +1,6 @@
 # Wildfire simulation
 
-This is an application for wildfire simulation based on cellular automata
+This is an application for wildfire simulation based on cellular automata model
 
 ## Features
 
