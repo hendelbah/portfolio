@@ -96,10 +96,10 @@ It uses:
  <img src="cellular_automaton/wildfire_west_wind.gif" alt="Wildfire under west wind" width="49.5%">
 </picture>
 
-Application that simulates wildfire using cellular automata model. As the result
-is creates GIF file that shows wildfire dynamics.
+Application that simulates wildfire using cellular automata model. In the result
+it creates a GIF file that illustrates wildfire dynamics.
 
-This was a project for my lab work in university(indeed, we had some
+This was a project for my lab work at the university(indeed, we had some
 programing subjects when studied chemistry).
 
 It is performed in OOP style and has GUI.
