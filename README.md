@@ -40,6 +40,7 @@ It uses:
 - **HTML, CSS, MySQL, JSON**
 - **REST API, OpenAPI, OOP**
 - **unittest**
+- **Travis, Coveralls**
 
 ## [Web Monaco report](https://github.com/hendelbah/portfolio/tree/master/web_monaco_report)
 
