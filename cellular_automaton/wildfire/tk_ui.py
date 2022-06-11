@@ -181,6 +181,8 @@ class Application(tk.Frame):
         if not image_proceeded:
             self.forest = Forest.random(self.terrain_size, self.spawn_forest_prob, self.scale)
         self.can_image = ImageTk.PhotoImage(Image.fromarray(self.forest.picture, mode='RGB'))
+        if isinstance(self.canvas, tk.Canvas):
+            self.canvas.destroy()
         self.canvas = tk.Canvas(self.master, width=self.can_image.width(),
                                 height=self.can_image.height())
         self.canvas.create_image(0, 0, anchor=tk.NW, image=self.can_image)
